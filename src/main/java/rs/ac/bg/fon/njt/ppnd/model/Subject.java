@@ -14,12 +14,18 @@ import java.util.Set;
 public class Subject {
     @Id
     @GeneratedValue
+    @Column(name = "subject_id")
     private Long id;
 
+    @Column(name = "subject_name")
     private String name;
-    private int LecutresPerWeek;
-    private int ExcerciesPerWeek;
-    private int LabExcercisesPerWeek;
+
+    @Column(name = "lectures_per_week")
+    private int lecutresPerWeek;
+    @Column(name = "excercises_per_week")
+    private int excerciesPerWeek;
+    @Column(name = "lab_excercises_per_week")
+    private int labExcercisesPerWeek;
 
     @ManyToOne
     @JoinColumn(name = "department_id")

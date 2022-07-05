@@ -1,7 +1,6 @@
 package rs.ac.bg.fon.njt.ppnd.model;
 
 import lombok.*;
-import rs.ac.bg.fon.njt.ppnd.model.keys.TeachingCoveragePlanId;
 
 import javax.persistence.*;
 
@@ -14,8 +13,11 @@ import javax.persistence.*;
 @Setter
 public class TeachingCoveragePlan {
 
-    @EmbeddedId
-    private TeachingCoveragePlanId id;
+    @Id
+    @GeneratedValue
+    @Column(name = "teaching_coverage_plan_id")
+    private Long id;
+
 
     @ManyToOne
     @JoinColumn(name = "module_subject_id")

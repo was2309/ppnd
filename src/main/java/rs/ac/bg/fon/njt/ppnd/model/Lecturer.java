@@ -8,13 +8,15 @@ import javax.persistence.*;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class Lecturer extends Employee {
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "academic_title")
     private AcademicTitle academicTitle;
 
 

@@ -16,11 +16,14 @@ public class Department {
 
     @Id
     @GeneratedValue
+    @Column(name = "department_id")
     private Long id;
 
     private String name;
-    private int numOfMembers;
+    private int numberOfMembers;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "department_type")
     private DepartmentType type;
 
     @OneToMany

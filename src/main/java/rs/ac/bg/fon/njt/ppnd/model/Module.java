@@ -1,7 +1,6 @@
 package rs.ac.bg.fon.njt.ppnd.model;
 
 import lombok.*;
-import rs.ac.bg.fon.njt.ppnd.model.keys.ModuleId;
 
 
 import javax.persistence.*;
@@ -17,9 +16,12 @@ import java.util.Set;
 @ToString
 public class Module {
 
-    @EmbeddedId
-    private ModuleId id;
+    @Id
+    @GeneratedValue
+    @Column(name = "module_id")
+    private Long id;
 
+    @Column(name = "module_name")
     private String name;
 
     @ManyToOne

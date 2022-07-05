@@ -19,12 +19,15 @@ public class Employee {
 
     @Id
     @GeneratedValue
+    @Column(name = "employee_id")
     private Long id;
 
     private String firstName;
     private String lastName;
     private Date birthday;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "education_title")
     private EducationTitle title;
 
     @ManyToOne

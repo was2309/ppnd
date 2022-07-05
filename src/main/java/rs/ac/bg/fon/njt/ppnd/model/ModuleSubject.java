@@ -2,7 +2,6 @@ package rs.ac.bg.fon.njt.ppnd.model;
 
 import lombok.*;
 
-import rs.ac.bg.fon.njt.ppnd.model.keys.ModuleSubjectId;
 import rs.ac.bg.fon.njt.ppnd.util.SubjectType;
 
 import javax.persistence.*;
@@ -17,12 +16,16 @@ import java.util.Set;
 @Setter
 public class ModuleSubject {
 
-    @EmbeddedId
-    private ModuleSubjectId id;
+   @Id
+   @GeneratedValue
+   private Long id;
 
     private int position;
     private int semester;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "subject_type")
     private SubjectType subjectType;
+    @Column(name = "num_of_espb")
     private int numOfESPB;
 
     @ManyToOne

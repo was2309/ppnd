@@ -18,9 +18,10 @@ public class StudyProgram {
 
     @Id
     @GeneratedValue
+    @Column(name = "study_program_id")
     private Long id;
 
-
+    @Column(name = "study_program_name")
     private String name;
 
 

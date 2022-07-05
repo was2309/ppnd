@@ -26,7 +26,7 @@ public class Year {
     @JoinColumn(name = "study_program_id")
     private StudyProgram studyProgram;
 
-    @OneToMany(mappedBy = "module_subject")
+    @OneToMany(mappedBy = "moduleSubject")
     private Set<TeachingCoveragePlan> plans;
 
 }
