@@ -17,6 +17,7 @@ public class Year {
 
     @Id
     @GeneratedValue
+    @Column(name = "year_id")
     private Long id;
 
 

@@ -19,6 +19,7 @@ public class Department {
     @Column(name = "department_id")
     private Long id;
 
+    @Column(name = "department_name")
     private String name;
     private int numberOfMembers;
 
