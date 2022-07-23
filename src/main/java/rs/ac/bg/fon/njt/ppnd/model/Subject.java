@@ -23,7 +23,7 @@ public class Subject {
     @Column(name = "lectures_per_week")
     private int lecutresPerWeek;
     @Column(name = "excercises_per_week")
-    private int excerciesPerWeek;
+    private int excercisesPerWeek;
     @Column(name = "lab_excercises_per_week")
     private int labExcercisesPerWeek;
 
