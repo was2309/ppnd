@@ -30,7 +30,6 @@ public class Subject {
     private Department department;
 
     @OneToMany(mappedBy = "module")
-    @JoinTable
     List<ModuleSubject> moduleSubjects;
 
 	public Subject(Long id, String name, int lecutresPerWeek, int excerciesPerWeek, int labExcercisesPerWeek,
