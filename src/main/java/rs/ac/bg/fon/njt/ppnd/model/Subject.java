@@ -33,7 +33,8 @@ public class Subject {
     @JoinColumn(name = "department_id")
     private Department department;
 
-    @OneToMany(mappedBy = "module")
+    
+    @OneToMany(mappedBy = "module",fetch = FetchType.EAGER)
     @JoinTable
     List<ModuleSubject> moduleSubjects;
 
@@ -46,7 +47,6 @@ public class Subject {
 		this.excerciesPerWeek = excerciesPerWeek;
 		this.labExcercisesPerWeek = labExcercisesPerWeek;
 		this.department = department;
-		this.moduleSubjects = moduleSubjects;
 	}
 
 	public Subject() {
