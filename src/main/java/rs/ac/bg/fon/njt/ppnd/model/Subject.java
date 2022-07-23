@@ -35,7 +35,6 @@ public class Subject {
 
     
     @OneToMany(mappedBy = "module",fetch = FetchType.EAGER)
-    @JoinTable
     List<ModuleSubject> moduleSubjects;
 
 	public Subject(Long id, String name, int lecutresPerWeek, int excerciesPerWeek, int labExcercisesPerWeek,
