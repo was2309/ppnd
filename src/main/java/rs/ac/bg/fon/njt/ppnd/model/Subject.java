@@ -2,6 +2,8 @@ package rs.ac.bg.fon.njt.ppnd.model;
 
 import lombok.*;
 import javax.persistence.*;
+
+import java.util.List;
 import java.util.Set;
 
 
@@ -32,6 +34,82 @@ public class Subject {
     private Department department;
 
     @OneToMany(mappedBy = "module")
-    Set<ModuleSubject> moduleSubjects;
+    @JoinTable
+    List<ModuleSubject> moduleSubjects;
+
+	public Subject(Long id, String name, int lecutresPerWeek, int excerciesPerWeek, int labExcercisesPerWeek,
+			Department department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.lecutresPerWeek = lecutresPerWeek;
+		this.excerciesPerWeek = excerciesPerWeek;
+		this.labExcercisesPerWeek = labExcercisesPerWeek;
+		this.department = department;
+		this.moduleSubjects = moduleSubjects;
+	}
+
+	public Subject() {
+		super();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getLecutresPerWeek() {
+		return lecutresPerWeek;
+	}
+
+	public void setLecutresPerWeek(int lecutresPerWeek) {
+		this.lecutresPerWeek = lecutresPerWeek;
+	}
+
+	public int getExcerciesPerWeek() {
+		return excerciesPerWeek;
+	}
+
+	public void setExcerciesPerWeek(int excerciesPerWeek) {
+		this.excerciesPerWeek = excerciesPerWeek;
+	}
+
+	public int getLabExcercisesPerWeek() {
+		return labExcercisesPerWeek;
+	}
+
+	public void setLabExcercisesPerWeek(int labExcercisesPerWeek) {
+		this.labExcercisesPerWeek = labExcercisesPerWeek;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public List<ModuleSubject> getModuleSubjects() {
+		return moduleSubjects;
+	}
+
+	public void setModuleSubjects(List<ModuleSubject> moduleSubjects) {
+		this.moduleSubjects = moduleSubjects;
+	}
+    
+    
+    
 
 }
