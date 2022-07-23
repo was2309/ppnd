@@ -5,15 +5,18 @@ import rs.ac.bg.fon.njt.ppnd.util.SubjectType;
 public class ModuleSubjectDTO {
 
 	private Long id;
+	private int position;
 	private int semester;
 	private SubjectType subjectType;
 	private int numOfESPB;
 	private SubjectDTO subject;
 	private ModuleDTO module;
-	public ModuleSubjectDTO(Long id, int semester, SubjectType subjectType, int numOfESPB, SubjectDTO subject,
-			ModuleDTO module) {
+
+	public ModuleSubjectDTO(Long id, int position, int semester, SubjectType subjectType, int numOfESPB,
+			SubjectDTO subject, ModuleDTO module) {
 		super();
 		this.id = id;
+		this.position = position;
 		this.semester = semester;
 		this.subjectType = subjectType;
 		this.numOfESPB = numOfESPB;
@@ -58,6 +61,12 @@ public class ModuleSubjectDTO {
 	}
 	public void setModule(ModuleDTO module) {
 		this.module = module;
+	}
+	public int getPosition() {
+		return position;
+	}
+	public void setPosition(int position) {
+		this.position = position;
 	}
 	
 	

@@ -28,11 +28,11 @@ public class LecturingDTO {
 	private int numberOfClasses;
 	private Long lecturer;
 
-	private Long teachingCoveragePlan;
+	private TeachingCoveragePlanDTO teachingCoveragePlan;
 
 	private TeachingForm teachingForm;
 
-	public LecturingDTO(Long id, int numberOfClasses, Long lecturer, Long teachingCoveragePlan,
+	public LecturingDTO(Long id, int numberOfClasses, Long lecturer, TeachingCoveragePlanDTO teachingCoveragePlan,
 			TeachingForm teachingForm) {
 		super();
 		this.id = id;
@@ -70,11 +70,11 @@ public class LecturingDTO {
 		this.lecturer = lecturer;
 	}
 
-	public Long getTeachingCoveragePlan() {
+	public TeachingCoveragePlanDTO getTeachingCoveragePlan() {
 		return teachingCoveragePlan;
 	}
 
-	public void setTeachingCoveragePlan(Long teachingCoveragePlan) {
+	public void setTeachingCoveragePlan(TeachingCoveragePlanDTO teachingCoveragePlan) {
 		this.teachingCoveragePlan = teachingCoveragePlan;
 	}
 
