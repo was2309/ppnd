@@ -1,6 +1,6 @@
 package rs.ac.bg.fon.njt.ppnd.model;
 
-import lombok.*;
+
 
 import rs.ac.bg.fon.njt.ppnd.util.SubjectType;
 
@@ -10,10 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "module_subject")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+
 public class ModuleSubject {
 
    @Id

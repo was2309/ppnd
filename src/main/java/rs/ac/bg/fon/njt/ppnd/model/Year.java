@@ -1,6 +1,5 @@
 package rs.ac.bg.fon.njt.ppnd.model;
 
-import lombok.*;
 
 
 import javax.persistence.*;
@@ -9,10 +8,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "year")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class Year {
 
     @Id

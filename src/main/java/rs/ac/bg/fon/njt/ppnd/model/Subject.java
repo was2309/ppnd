@@ -1,6 +1,6 @@
 package rs.ac.bg.fon.njt.ppnd.model;
 
-import lombok.*;
+
 import javax.persistence.*;
 
 import java.util.List;
@@ -9,10 +9,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "subject")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class Subject {
     @Id
     @GeneratedValue
@@ -25,7 +21,7 @@ public class Subject {
     @Column(name = "lectures_per_week")
     private int lecutresPerWeek;
     @Column(name = "excercises_per_week")
-    private int excercisesPerWeek;
+    private int excerciesPerWeek;
     @Column(name = "lab_excercises_per_week")
     private int labExcercisesPerWeek;
 

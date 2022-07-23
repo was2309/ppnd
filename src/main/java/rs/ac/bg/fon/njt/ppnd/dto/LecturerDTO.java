@@ -1,16 +1,9 @@
 package rs.ac.bg.fon.njt.ppnd.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 import rs.ac.bg.fon.njt.ppnd.util.AcademicTitle;
 
-@Data
-@AllArgsConstructor
 
-@Getter
-@Setter
 public class LecturerDTO {
     private Long id;
     private String firstName;

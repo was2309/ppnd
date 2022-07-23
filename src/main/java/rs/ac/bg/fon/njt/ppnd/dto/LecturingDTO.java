@@ -1,26 +1,9 @@
 package rs.ac.bg.fon.njt.ppnd.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import rs.ac.bg.fon.njt.ppnd.model.Lecturer;
-import rs.ac.bg.fon.njt.ppnd.model.TeachingCoveragePlan;
 import rs.ac.bg.fon.njt.ppnd.util.TeachingForm;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+
 public class LecturingDTO {
 
 	private Long id;

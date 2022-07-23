@@ -1,7 +1,6 @@
 package rs.ac.bg.fon.njt.ppnd.model;
 
 
-import lombok.*;
 import rs.ac.bg.fon.njt.ppnd.util.AcademicTitle;
 
 import javax.persistence.*;
@@ -9,10 +8,6 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class Lecturer extends Employee {
 
     @Enumerated(EnumType.STRING)
@@ -22,6 +17,9 @@ public class Lecturer extends Employee {
 	public Lecturer(AcademicTitle academicTitle) {
 		super();
 		this.academicTitle = academicTitle;
+	}
+
+	public Lecturer() {
 	}
 
 	public AcademicTitle getAcademicTitle() {

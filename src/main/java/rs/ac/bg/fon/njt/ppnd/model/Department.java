@@ -1,6 +1,5 @@
 package rs.ac.bg.fon.njt.ppnd.model;
 
-import lombok.*;
 import rs.ac.bg.fon.njt.ppnd.util.DepartmentType;
 
 import javax.persistence.*;
@@ -8,10 +7,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "department")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class Department {
 
     @Id

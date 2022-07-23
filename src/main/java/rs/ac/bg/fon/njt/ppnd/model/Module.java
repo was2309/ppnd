@@ -11,11 +11,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "module")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@ToString
 public class Module {
 
     @Id

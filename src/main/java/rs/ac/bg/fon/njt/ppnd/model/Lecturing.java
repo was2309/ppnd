@@ -1,6 +1,6 @@
 package rs.ac.bg.fon.njt.ppnd.model;
 
-import lombok.*;
+
 import rs.ac.bg.fon.njt.ppnd.util.TeachingForm;
 
 import javax.persistence.*;
@@ -8,10 +8,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "teaching_coverage_plan")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class Lecturing {
 
     @Id
@@ -39,6 +35,9 @@ public class Lecturing {
 		this.lecturer = lecturer;
 		this.teachingCoveragePlan = teachingCoveragePlan;
 		this.teachingForm = teachingForm;
+	}
+
+	public Lecturing() {
 	}
 
 	public Long getId() {

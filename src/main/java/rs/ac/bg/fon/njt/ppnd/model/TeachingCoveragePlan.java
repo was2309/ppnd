@@ -1,16 +1,11 @@
 package rs.ac.bg.fon.njt.ppnd.model;
 
-import lombok.*;
 
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "teaching_coverage_plan")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class TeachingCoveragePlan {
 
     @Id
