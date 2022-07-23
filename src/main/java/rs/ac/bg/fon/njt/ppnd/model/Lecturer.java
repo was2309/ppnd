@@ -19,5 +19,20 @@ public class Lecturer extends Employee {
     @Column(name = "academic_title")
     private AcademicTitle academicTitle;
 
+	public Lecturer(AcademicTitle academicTitle) {
+		super();
+		this.academicTitle = academicTitle;
+	}
+
+	public AcademicTitle getAcademicTitle() {
+		return academicTitle;
+	}
+
+	public void setAcademicTitle(AcademicTitle academicTitle) {
+		this.academicTitle = academicTitle;
+	}
+    
+    
+
 
 }

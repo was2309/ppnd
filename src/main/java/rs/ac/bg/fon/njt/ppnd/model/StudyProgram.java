@@ -24,5 +24,33 @@ public class StudyProgram {
     @Column(name = "study_program_name")
     private String name;
 
+	public StudyProgram(Long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 
+	public StudyProgram() {
+		super();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+    
+    
 }
