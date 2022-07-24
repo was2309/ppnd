@@ -9,11 +9,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 import rs.ac.bg.fon.njt.ppnd.converter.ModuleSubjectConverter;
 import rs.ac.bg.fon.njt.ppnd.converter.SubjectConverter;
+import rs.ac.bg.fon.njt.ppnd.dto.ModuleDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.ModuleSubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.SubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.model.ModuleSubject;
 import rs.ac.bg.fon.njt.ppnd.model.Subject;
 import rs.ac.bg.fon.njt.ppnd.repository.SubjectRepository;
+import rs.ac.bg.fon.njt.ppnd.service.ModuleService;
 import rs.ac.bg.fon.njt.ppnd.service.SubjectService;
 
 public class SubjectServiceImpl implements SubjectService {
@@ -27,6 +29,9 @@ public class SubjectServiceImpl implements SubjectService {
 	
 	@Autowired
 	ModuleSubjectConverter moduleSubjectConverter;
+	
+	@Autowired
+	ModuleService moduleService;
 
 	@Override
 	public SubjectDTO saveSubject(SubjectDTO subjectDTO) {
@@ -101,6 +106,25 @@ public class SubjectServiceImpl implements SubjectService {
 			Subject savedSubject=this.subjectRepository.save(mergedSubject);
 			return this.subjectConverter.toDto(savedSubject);
 			
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
+	@Override
+	public List<SubjectDTO> getByModuleId(Long moduleId) {
+		try {
+			ModuleDTO module=this.moduleService.getById(moduleId);
+			if(module==null) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Module with given id does not exist!");
+			}
+			List<Subject>subjects=this.subjectRepository.getByModuleId(moduleId);
+			List<SubjectDTO>subjectsDto=new ArrayList<>();
+			subjects.forEach((subject)->{
+				SubjectDTO dto=this.subjectConverter.toDto(subject);
+				subjectsDto.add(dto);
+			});
+			return subjectsDto;
 		} catch (Exception e) {
 			throw e;
 		}

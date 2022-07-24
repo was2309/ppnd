@@ -11,4 +11,5 @@ public interface SubjectService {
 	public SubjectDTO getById(Long id);
 	public SubjectDTO deleteSubject(Long id);
 	public SubjectDTO updateSubject(SubjectDTO dto);
+	public List<SubjectDTO>getByModuleId(Long moduleId);
 }
