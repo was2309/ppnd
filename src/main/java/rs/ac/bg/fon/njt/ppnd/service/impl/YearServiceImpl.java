@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.njt.service.impl;
+package rs.ac.bg.fon.njt.ppnd.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ import rs.ac.bg.fon.njt.ppnd.dto.YearDTO;
 import rs.ac.bg.fon.njt.ppnd.model.StudyProgram;
 import rs.ac.bg.fon.njt.ppnd.model.Year;
 import rs.ac.bg.fon.njt.ppnd.repository.YearRepository;
-import rs.ac.bg.fon.njt.service.StudyProgramService;
-import rs.ac.bg.fon.njt.service.YearService;
+import rs.ac.bg.fon.njt.ppnd.service.StudyProgramService;
+import rs.ac.bg.fon.njt.ppnd.service.YearService;
 
 public class YearServiceImpl implements YearService{
 	

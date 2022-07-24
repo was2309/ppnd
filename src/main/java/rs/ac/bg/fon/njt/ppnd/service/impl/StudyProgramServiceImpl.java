@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.njt.service.impl;
+package rs.ac.bg.fon.njt.ppnd.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import rs.ac.bg.fon.njt.ppnd.converter.StudyProgramConverter;
 import rs.ac.bg.fon.njt.ppnd.dto.StudyProgramDTO;
 import rs.ac.bg.fon.njt.ppnd.model.StudyProgram;
 import rs.ac.bg.fon.njt.ppnd.repository.StudyProgramRepository;
-import rs.ac.bg.fon.njt.service.StudyProgramService;
+import rs.ac.bg.fon.njt.ppnd.service.StudyProgramService;
 
 public class StudyProgramServiceImpl implements StudyProgramService{
 	

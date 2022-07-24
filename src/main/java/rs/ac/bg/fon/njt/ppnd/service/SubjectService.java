@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.njt.service;
+package rs.ac.bg.fon.njt.ppnd.service;
 
 import java.util.List;
 

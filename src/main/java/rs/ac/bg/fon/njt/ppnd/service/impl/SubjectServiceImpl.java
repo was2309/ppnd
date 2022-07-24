@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.njt.service.impl;
+package rs.ac.bg.fon.njt.ppnd.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import rs.ac.bg.fon.njt.ppnd.dto.SubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.model.ModuleSubject;
 import rs.ac.bg.fon.njt.ppnd.model.Subject;
 import rs.ac.bg.fon.njt.ppnd.repository.SubjectRepository;
-import rs.ac.bg.fon.njt.service.SubjectService;
+import rs.ac.bg.fon.njt.ppnd.service.SubjectService;
 
 public class SubjectServiceImpl implements SubjectService {
 
