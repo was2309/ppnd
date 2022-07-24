@@ -6,7 +6,7 @@ import rs.ac.bg.fon.njt.ppnd.model.Lecturer;
 public class LecturerConverter implements Converter<LecturerDTO, Lecturer>{
     @Override
     public Lecturer toEntity(LecturerDTO lecturerDTO) {
-        return null;
+        return new Lecturer(lecturerDTO.getId(), lecturerDTO.getFirstName(), lecturerDTO.getLastName(), lecturerDTO.getAcademicTitle());
     }
 
     @Override

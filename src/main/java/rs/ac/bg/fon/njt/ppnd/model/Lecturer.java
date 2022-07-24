@@ -22,7 +22,14 @@ public class Lecturer extends Employee {
 	public Lecturer() {
 	}
 
-	public AcademicTitle getAcademicTitle() {
+    public Lecturer(Long id, String firstName, String lastName, AcademicTitle academicTitle) {
+		this.setId(id);
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		this.academicTitle = academicTitle;
+    }
+
+    public AcademicTitle getAcademicTitle() {
 		return academicTitle;
 	}
 
