@@ -9,7 +9,7 @@ import java.util.List;
 public interface TeachingCoveragePlanService {
     List<TeachingCoveragePlanDTO> getAllByYear(YearDTO yearDTO);
     List<TeachingCoveragePlanDTO> getAllByModuleSubject(ModuleSubjectDTO moduleSubjectDTO);
+    TeachingCoveragePlanDTO findById(Long id);
     TeachingCoveragePlanDTO saveTeachingCoveragePlan(TeachingCoveragePlanDTO teachingCoveragePlanDTO);
-    boolean deleteTeachingCoveragePlan(Long id);
-    TeachingCoveragePlanDTO updateTeachingCoveragePlan(TeachingCoveragePlanDTO teachingCoveragePlanDTO);
+    TeachingCoveragePlanDTO deleteTeachingCoveragePlan(Long id);
 }
