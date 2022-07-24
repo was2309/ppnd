@@ -2,6 +2,8 @@ package rs.ac.bg.fon.njt.ppnd.model;
 
 
 import javax.persistence.*;
+import java.util.List;
+import rs.ac.bg.fon.njt.ppnd.model.Lecturing;
 
 
 @Entity
@@ -22,11 +24,15 @@ public class TeachingCoveragePlan {
     @JoinColumn(name = "year_id")
     private Year year;
 
-	public TeachingCoveragePlan(Long id, ModuleSubject moduleSubject, Year year) {
+    @OneToMany
+    private List<Lecturing> lecturings;
+
+	public TeachingCoveragePlan(Long id, ModuleSubject moduleSubject, Year year, List<Lecturing> lecturings) {
 		super();
 		this.id = id;
 		this.moduleSubject = moduleSubject;
 		this.year = year;
+		this.lecturings = lecturings;
 	}
 
 	public TeachingCoveragePlan() {
@@ -56,7 +62,12 @@ public class TeachingCoveragePlan {
 	public void setYear(Year year) {
 		this.year = year;
 	}
-	
-	
 
+	public List<Lecturing> getLecturings() {
+		return lecturings;
+	}
+
+	public void setLecturings(List<Lecturing> lecturings) {
+		this.lecturings = lecturings;
+	}
 }
