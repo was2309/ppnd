@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import rs.ac.bg.fon.njt.ppnd.model.Lecturing;
 
-public interface LecturingRepository extends JpaRepository<Lecturing, Long>{
+import java.util.List;
 
+public interface LecturingRepository extends JpaRepository<Lecturing, Long>{
+    List<Lecturing> findAllByTeachingCoveragePlanId(Long teachingCoveragePlanId);
 }
