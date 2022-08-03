@@ -74,7 +74,32 @@ public class LecturingServiceImpl implements LecturingService {
 
     @Override
     public List<LecturingDTO> saveListOfLecturings(List<LecturingDTO> lecturingDTOs) {
-        return null;
+        List<LecturingDTO> savedLecturings = new ArrayList<>();
+        try {
+            for (LecturingDTO lecturingDTO : lecturingDTOs) {
+                Lecturing lecturing = lecturingConverter.toEntity(lecturingDTO);
+                Optional<TeachingCoveragePlan> teachingCoveragePlan = teachingCoveragePlanRepository.findById(lecturing.getTeachingCoveragePlan().getId());
+                if (teachingCoveragePlan.isEmpty()) {
+                    TeachingCoveragePlanDTO tcdSaved = this.teachingCoveragePlanService.saveTeachingCoveragePlan(teachingCoveragePlanConverter.toDto(lecturing.getTeachingCoveragePlan()));
+                    lecturing.setTeachingCoveragePlan(teachingCoveragePlanConverter.toEntity(tcdSaved));
+                }
+                Optional<Lecturer> lecturer = lecturerRepository.findById(lecturing.getLecturer().getId());
+                if (lecturer.isEmpty()) {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Lecturer with given id does not exist!");
+                }
+                lecturing.setLecturer(lecturer.get());
+                Lecturing savedLecturing = this.lecturingRepository.save(lecturing);
+                LecturingDTO savedLecturingDTO = lecturingConverter.toDto(savedLecturing);
+                savedLecturings.add(savedLecturingDTO);
+            }
+            if (savedLecturings.size() != lecturingDTOs.size()) {
+                return new ArrayList<>();
+            }
+            return savedLecturings;
+        } catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Problem with saving lecturings!");
+        }
+
     }
 
     @Override
@@ -115,6 +140,9 @@ public class LecturingServiceImpl implements LecturingService {
            TeachingCoveragePlanDTO tcpDto = teachingCoveragePlanService.findById(teachingCoveragePlanId);
            List<Lecturing> lecturings = lecturingRepository.findAllByTeachingCoveragePlanId(tcpDto.getId());
            //maybe add validation if list is empty
+           if(lecturings.isEmpty()){
+               return new ArrayList<>();
+           }
            List<LecturingDTO> lecturingDTOS = new ArrayList<>();
            for(Lecturing lecturing:lecturings){
                 LecturingDTO ldto = lecturingConverter.toDto(lecturing);
