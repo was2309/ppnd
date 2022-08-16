@@ -28,12 +28,15 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
     YearConverter yearConverter;
     @Autowired
     ModuleSubjectConverter moduleSubjectConverter;
+    @Autowired
+    private SaveTCPInJsonFileServiceImpl saveTCPInJsonFileService;
 
-    public TeachingCoveragePlanServiceImpl(TeachingCoveragePlanRepository teachingCoveragePlanRepository, TeachingCoveragePlanConverter teachingCoveragePlanConverter, YearConverter yearConverter, ModuleSubjectConverter moduleSubjectConverter) {
+    public TeachingCoveragePlanServiceImpl(TeachingCoveragePlanRepository teachingCoveragePlanRepository, TeachingCoveragePlanConverter teachingCoveragePlanConverter, YearConverter yearConverter, ModuleSubjectConverter moduleSubjectConverter, SaveTCPInJsonFileServiceImpl saveTCPInJsonFileService) {
         this.teachingCoveragePlanRepository = teachingCoveragePlanRepository;
         this.teachingCoveragePlanConverter = teachingCoveragePlanConverter;
         this.yearConverter = yearConverter;
         this.moduleSubjectConverter = moduleSubjectConverter;
+        this.saveTCPInJsonFileService = saveTCPInJsonFileService;
     }
 
     @Override
@@ -79,7 +82,9 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
             if(tcp.isEmpty()){
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No saved teaching coverage plan with given id!");
             }
-            return this.teachingCoveragePlanConverter.toDto(tcp.get());
+            TeachingCoveragePlanDTO founded = this.teachingCoveragePlanConverter.toDto(tcp.get());
+            this.saveTCPInJsonFileService.saveTCPToFile(founded);
+            return founded;
         }catch (Exception e){
             throw e;
         }
