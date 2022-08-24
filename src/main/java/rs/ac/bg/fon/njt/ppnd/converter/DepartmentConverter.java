@@ -1,8 +1,10 @@
 package rs.ac.bg.fon.njt.ppnd.converter;
 
+import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.njt.ppnd.dto.DepartmentDTO;
 import rs.ac.bg.fon.njt.ppnd.model.Department;
 
+@Component
 public class DepartmentConverter implements Converter<DepartmentDTO, Department>{
 
     @Override

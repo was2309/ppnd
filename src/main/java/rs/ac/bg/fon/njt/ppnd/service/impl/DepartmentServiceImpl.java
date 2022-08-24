@@ -13,14 +13,18 @@ import rs.ac.bg.fon.njt.ppnd.service.DepartmentService;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Service
 public class DepartmentServiceImpl implements DepartmentService {
 
-    @Autowired
-    DepartmentRepository departmentRepository;
+    private final DepartmentRepository departmentRepository;
+
+    private final DepartmentConverter departmentConverter;
 
     @Autowired
-    DepartmentConverter departmentConverter;
+    public DepartmentServiceImpl(DepartmentRepository departmentRepository, DepartmentConverter departmentConverter) {
+        this.departmentRepository = departmentRepository;
+        this.departmentConverter = departmentConverter;
+    }
 
     @Override
     public List<DepartmentDTO> getAllDepartments() {

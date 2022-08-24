@@ -1,8 +1,10 @@
 package rs.ac.bg.fon.njt.ppnd.converter;
 
+import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.njt.ppnd.dto.LecturerDTO;
 import rs.ac.bg.fon.njt.ppnd.model.Lecturer;
 
+@Component
 public class LecturerConverter implements Converter<LecturerDTO, Lecturer>{
     @Override
     public Lecturer toEntity(LecturerDTO lecturerDTO) {

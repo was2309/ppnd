@@ -2,6 +2,7 @@ package rs.ac.bg.fon.njt.ppnd.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import rs.ac.bg.fon.njt.ppnd.converter.LecturerConverter;
 import rs.ac.bg.fon.njt.ppnd.dto.LecturerDTO;
@@ -12,13 +13,18 @@ import rs.ac.bg.fon.njt.ppnd.service.LecturerService;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class LecturerServiceImpl implements LecturerService {
 
-    @Autowired
-    LecturerRepository lecturerRepository;
+    private final LecturerRepository lecturerRepository;
+
+    private final LecturerConverter lecturerConverter;
 
     @Autowired
-    LecturerConverter lecturerConverter;
+    public LecturerServiceImpl(LecturerRepository lecturerRepository, LecturerConverter lecturerConverter) {
+        this.lecturerRepository = lecturerRepository;
+        this.lecturerConverter = lecturerConverter;
+    }
 
     @Override
     public List<LecturerDTO> getAllLecturers() {

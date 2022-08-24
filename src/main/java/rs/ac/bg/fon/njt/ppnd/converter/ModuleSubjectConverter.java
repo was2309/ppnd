@@ -2,20 +2,26 @@ package rs.ac.bg.fon.njt.ppnd.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.njt.ppnd.dto.ModuleDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.ModuleSubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.SubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.model.ModuleSubject;
 import rs.ac.bg.fon.njt.ppnd.model.Subject;
 
+@Component
 public class ModuleSubjectConverter implements Converter<ModuleSubjectDTO, ModuleSubject>{
 
-	@Autowired
-	SubjectConverter subjectConverter;
+	private final SubjectConverter subjectConverter;
 	
+	private final ModuleConverter moduleConverter;
+
 	@Autowired
-	ModuleConverter moduleConverter;
-	
+	public ModuleSubjectConverter(SubjectConverter subjectConverter, ModuleConverter moduleConverter) {
+		this.subjectConverter = subjectConverter;
+		this.moduleConverter = moduleConverter;
+	}
+
 	@Override
 	public ModuleSubject toEntity(ModuleSubjectDTO d) {
 		Subject s=subjectConverter.toEntity(d.getSubject());

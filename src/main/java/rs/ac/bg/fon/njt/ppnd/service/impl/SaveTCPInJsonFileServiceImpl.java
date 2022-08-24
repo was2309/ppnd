@@ -4,7 +4,6 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.njt.ppnd.dto.TeachingCoveragePlanDTO;
 

@@ -2,6 +2,7 @@ package rs.ac.bg.fon.njt.ppnd.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import rs.ac.bg.fon.njt.ppnd.converter.LecturingConverter;
 import rs.ac.bg.fon.njt.ppnd.converter.TeachingCoveragePlanConverter;
@@ -20,24 +21,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class LecturingServiceImpl implements LecturingService {
 
-    @Autowired
-    LecturingRepository lecturingRepository;
-    @Autowired
-    TeachingCoveragePlanRepository teachingCoveragePlanRepository;
-    @Autowired
-    LecturingConverter lecturingConverter;
+    private final LecturingRepository lecturingRepository;
+    private final TeachingCoveragePlanRepository teachingCoveragePlanRepository;
+    private final LecturingConverter lecturingConverter;
+    private final TeachingCoveragePlanService teachingCoveragePlanService;
+    private final TeachingCoveragePlanConverter teachingCoveragePlanConverter;
+    private final LecturerRepository lecturerRepository;
 
     @Autowired
-    TeachingCoveragePlanService teachingCoveragePlanService;
-    @Autowired
-    TeachingCoveragePlanConverter teachingCoveragePlanConverter;
-
-    @Autowired
-    LecturerRepository lecturerRepository;
-
-
     public LecturingServiceImpl(LecturingRepository lecturingRepository, TeachingCoveragePlanRepository teachingCoveragePlanRepository, LecturingConverter lecturingConverter, TeachingCoveragePlanServiceImpl teachingCoveragePlanService, TeachingCoveragePlanConverter teachingCoveragePlanConverter, LecturerRepository lecturerRepository) {
         this.lecturingRepository = lecturingRepository;
         this.teachingCoveragePlanRepository = teachingCoveragePlanRepository;
@@ -47,8 +41,7 @@ public class LecturingServiceImpl implements LecturingService {
         this.lecturerRepository = lecturerRepository;
     }
 
-    //    @Autowired
-//    LecturerConverter lecturerConverter;
+
 
     @Override
     public LecturingDTO saveLecturing(LecturingDTO lecturingDTO) {

@@ -2,6 +2,7 @@ package rs.ac.bg.fon.njt.ppnd.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import rs.ac.bg.fon.njt.ppnd.converter.ModuleSubjectConverter;
 import rs.ac.bg.fon.njt.ppnd.converter.TeachingCoveragePlanConverter;
@@ -17,26 +18,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
+@Service
 public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanService {
 
-    @Autowired
-     TeachingCoveragePlanRepository teachingCoveragePlanRepository;
-    @Autowired
-     TeachingCoveragePlanConverter teachingCoveragePlanConverter;
-    @Autowired
-    YearConverter yearConverter;
-    @Autowired
-    ModuleSubjectConverter moduleSubjectConverter;
-    @Autowired
-    private SaveTCPInJsonFileServiceImpl saveTCPInJsonFileService;
+    private final TeachingCoveragePlanRepository teachingCoveragePlanRepository;
+    private final TeachingCoveragePlanConverter teachingCoveragePlanConverter;
+    private final YearConverter yearConverter;
+    private final ModuleSubjectConverter moduleSubjectConverter;
+    private final SaveTCPInJsonFileServiceImpl saveTCPInJsonFileService;
 
-    public TeachingCoveragePlanServiceImpl(TeachingCoveragePlanRepository teachingCoveragePlanRepository, TeachingCoveragePlanConverter teachingCoveragePlanConverter, YearConverter yearConverter, ModuleSubjectConverter moduleSubjectConverter, SaveTCPInJsonFileServiceImpl saveTCPInJsonFileService) {
-        this.teachingCoveragePlanRepository = teachingCoveragePlanRepository;
+    @Autowired
+    public TeachingCoveragePlanServiceImpl(TeachingCoveragePlanConverter teachingCoveragePlanConverter, YearConverter yearConverter, ModuleSubjectConverter moduleSubjectConverter, SaveTCPInJsonFileServiceImpl saveTCPInJsonFileService, TeachingCoveragePlanRepository teachingCoveragePlanRepository) {
         this.teachingCoveragePlanConverter = teachingCoveragePlanConverter;
         this.yearConverter = yearConverter;
         this.moduleSubjectConverter = moduleSubjectConverter;
         this.saveTCPInJsonFileService = saveTCPInJsonFileService;
+        this.teachingCoveragePlanRepository = teachingCoveragePlanRepository;
     }
 
     @Override
