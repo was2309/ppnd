@@ -10,7 +10,9 @@ import rs.ac.bg.fon.njt.ppnd.converter.YearConverter;
 import rs.ac.bg.fon.njt.ppnd.dto.ModuleSubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.TeachingCoveragePlanDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.YearDTO;
+import rs.ac.bg.fon.njt.ppnd.model.ModuleSubject;
 import rs.ac.bg.fon.njt.ppnd.model.TeachingCoveragePlan;
+import rs.ac.bg.fon.njt.ppnd.model.Year;
 import rs.ac.bg.fon.njt.ppnd.repository.TeachingCoveragePlanRepository;
 import rs.ac.bg.fon.njt.ppnd.service.TeachingCoveragePlanService;
 
@@ -37,9 +39,11 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
     }
 
     @Override
-    public List<TeachingCoveragePlanDTO> getAllByYear(YearDTO yearDTO) {
+    public List<TeachingCoveragePlanDTO> getAllByYear(Long yearId) {
         try{
-            List<TeachingCoveragePlan> tcps = this.teachingCoveragePlanRepository.findAllByYear(yearConverter.toEntity(yearDTO));
+            Year year = new Year();
+            year.setId(yearId);
+            List<TeachingCoveragePlan> tcps = this.teachingCoveragePlanRepository.findAllByYear(year);
             if(tcps.isEmpty()){
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No saved teaching coverage plans for given year!");
             }
@@ -55,9 +59,11 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
     }
 
     @Override
-    public List<TeachingCoveragePlanDTO> getAllByModuleSubject(ModuleSubjectDTO moduleSubjectDTO) {
+    public List<TeachingCoveragePlanDTO> getAllByModuleSubject(Long moduleSubjectId) {
         try{
-            List<TeachingCoveragePlan> tcps = this.teachingCoveragePlanRepository.findAllByModuleSubject(moduleSubjectConverter.toEntity(moduleSubjectDTO));
+            ModuleSubject moduleSubject = new ModuleSubject();
+            moduleSubject.setId(moduleSubjectId);
+            List<TeachingCoveragePlan> tcps = this.teachingCoveragePlanRepository.findAllByModuleSubject(moduleSubject);
             if(tcps.isEmpty()){
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No saved teaching coverage plans for given subject in selected module!");
             }
