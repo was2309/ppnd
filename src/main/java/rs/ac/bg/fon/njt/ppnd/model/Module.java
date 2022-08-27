@@ -4,6 +4,8 @@ import lombok.*;
 
 
 import javax.persistence.*;
+
+import java.util.List;
 import java.util.Set;
 
 
@@ -30,6 +32,56 @@ public class Module {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "subject")
-    Set<ModuleSubject> moduleSubjects = new java.util.LinkedHashSet<>();
+    List<ModuleSubject> moduleSubjects;
+
+	public Module(Long id, String name, StudyProgram studyProgram) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.studyProgram = studyProgram;
+		
+	}
+	
+	
+
+	public Module() {
+		super();
+	}
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public StudyProgram getStudyProgram() {
+		return studyProgram;
+	}
+
+	public void setStudyProgram(StudyProgram studyProgram) {
+		this.studyProgram = studyProgram;
+	}
+
+	public List<ModuleSubject> getModuleSubjects() {
+		return moduleSubjects;
+	}
+
+	public void setModuleSubjects(List<ModuleSubject> moduleSubjects) {
+		this.moduleSubjects = moduleSubjects;
+	}
+    
+    
 
 }
