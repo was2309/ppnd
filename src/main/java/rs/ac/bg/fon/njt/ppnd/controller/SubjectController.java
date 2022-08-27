@@ -25,8 +25,8 @@ public class SubjectController {
     }
 
     @GetMapping("/module/:moduleId")
-    public SubjectDTO getByModuleId(@RequestParam("moduleId")String moduleId){
-        return this.subjectService.getById(Long.valueOf(moduleId));
+    public List<SubjectDTO> getByModuleId(@RequestParam("moduleId")String moduleId){
+        return this.subjectService.getByModuleId(Long.valueOf(moduleId));
     }
 
     @PostMapping("/save")

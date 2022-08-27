@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import rs.ac.bg.fon.njt.ppnd.converter.StudyProgramConverter;
@@ -13,6 +14,7 @@ import rs.ac.bg.fon.njt.ppnd.dto.StudyProgramDTO;
 import rs.ac.bg.fon.njt.ppnd.model.StudyProgram;
 import rs.ac.bg.fon.njt.ppnd.repository.StudyProgramRepository;
 import rs.ac.bg.fon.njt.ppnd.service.StudyProgramService;
+@Service
 public class StudyProgramServiceImpl implements StudyProgramService{
 	
 	@Autowired

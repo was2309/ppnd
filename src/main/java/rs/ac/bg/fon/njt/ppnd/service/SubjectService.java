@@ -2,7 +2,9 @@ package rs.ac.bg.fon.njt.ppnd.service;
 
 import java.util.List;
 
+import rs.ac.bg.fon.njt.ppnd.dto.ModuleSubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.SubjectDTO;
+import rs.ac.bg.fon.njt.ppnd.model.ModuleSubject;
 
 public interface SubjectService {
 
