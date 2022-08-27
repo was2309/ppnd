@@ -5,20 +5,24 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.njt.ppnd.dto.StudyProgramDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.TeachingCoveragePlanDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.YearDTO;
 import rs.ac.bg.fon.njt.ppnd.model.StudyProgram;
 import rs.ac.bg.fon.njt.ppnd.model.Year;
 
+@Component
 public class YearConverter implements Converter<YearDTO, Year>{
 
-	@Autowired
-	StudyProgramConverter studyProgramConverter;
+	private final StudyProgramConverter studyProgramConverter;
 	
+
 	@Autowired
-	TeachingCoveragePlanConverter planConverter;
-	
+	public YearConverter(StudyProgramConverter studyProgramConverter) {
+		this.studyProgramConverter = studyProgramConverter;
+	}
+
 	@Override
 	public Year toEntity(YearDTO d) {
 		StudyProgram s=studyProgramConverter.toEntity(d.getStudyProgram());
@@ -28,12 +32,8 @@ public class YearConverter implements Converter<YearDTO, Year>{
 	@Override
 	public YearDTO toDto(Year e) {
 		StudyProgramDTO s=studyProgramConverter.toDto(e.getStudyProgram());
-		List<TeachingCoveragePlanDTO>coveragePlans=new ArrayList<>();
-		e.getPlans().forEach((coveragePlan)->{
-			TeachingCoveragePlanDTO d=planConverter.toDto(coveragePlan);
-			coveragePlans.add(d);
-		});
-		return new YearDTO(e.getId(), e.getStudyYear(),s,coveragePlans);
+
+		return new YearDTO(e.getId(), e.getStudyYear(),s,new ArrayList<>());
 	}
 
 }

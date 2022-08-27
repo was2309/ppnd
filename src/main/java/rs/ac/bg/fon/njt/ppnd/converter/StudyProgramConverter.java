@@ -1,8 +1,10 @@
 package rs.ac.bg.fon.njt.ppnd.converter;
 
+import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.njt.ppnd.dto.StudyProgramDTO;
 import rs.ac.bg.fon.njt.ppnd.model.StudyProgram;
 
+@Component
 public class StudyProgramConverter implements Converter<StudyProgramDTO, StudyProgram> {
 
 	@Override

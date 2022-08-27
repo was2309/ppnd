@@ -5,17 +5,22 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.njt.ppnd.dto.DepartmentDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.ModuleSubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.SubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.model.Department;
 import rs.ac.bg.fon.njt.ppnd.model.Subject;
 
+@Component
 public class SubjectConverter implements Converter<SubjectDTO, Subject>{
 
+
 	@Autowired
-	ModuleSubjectConverter moduleSubjectConverter;
-	
+	public SubjectConverter() {
+
+	}
+
 	@Override
 	public Subject toEntity(SubjectDTO d) {
 		Department department=new Department();
@@ -29,10 +34,6 @@ public class SubjectConverter implements Converter<SubjectDTO, Subject>{
 	public SubjectDTO toDto(Subject e) {
 		DepartmentDTO department=new DepartmentDTO(e.getDepartment().getId(), e.getDepartment().getName(), e.getDepartment().getNumberOfMembers());
 		List<ModuleSubjectDTO>moduleSubjects=new ArrayList<>();
-		e.getModuleSubjects().forEach((moduleSubject)->{
-			ModuleSubjectDTO d=moduleSubjectConverter.toDto(moduleSubject);
-			moduleSubjects.add(d);
-		});
 		return new SubjectDTO(e.getId(), e.getName(), e.getExcerciesPerWeek(), e.getLabExcercisesPerWeek(),e.getLecutresPerWeek(), department, moduleSubjects);
 	}
 

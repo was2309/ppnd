@@ -1,8 +1,6 @@
 package rs.ac.bg.fon.njt.ppnd.model;
 
 
-
-import lombok.*;
 import rs.ac.bg.fon.njt.ppnd.util.EducationTitle;
 
 import javax.persistence.*;
@@ -11,10 +9,6 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "employee")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class Employee {
 
     @Id

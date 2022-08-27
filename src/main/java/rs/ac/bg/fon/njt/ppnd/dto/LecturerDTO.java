@@ -1,9 +1,6 @@
 package rs.ac.bg.fon.njt.ppnd.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 import rs.ac.bg.fon.njt.ppnd.util.AcademicTitle;
 
 
@@ -12,6 +9,7 @@ public class LecturerDTO {
     private String firstName;
     private String lastName;
     private AcademicTitle academicTitle;
+
 	public LecturerDTO(Long id, String firstName, String lastName, AcademicTitle academicTitle) {
 		super();
 		this.id = id;
@@ -48,7 +46,5 @@ public class LecturerDTO {
 	}
     
     
-    
-    
-    
+
 }
