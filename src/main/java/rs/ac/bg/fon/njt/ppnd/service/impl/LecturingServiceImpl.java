@@ -30,7 +30,7 @@ public class LecturingServiceImpl implements LecturingService {
     private final TeachingCoveragePlanService teachingCoveragePlanService;
     private final TeachingCoveragePlanConverter teachingCoveragePlanConverter;
     private final LecturerRepository lecturerRepository;
-
+    private final int NUM_OF_CLASSES = 13;
     @Autowired
     public LecturingServiceImpl(LecturingRepository lecturingRepository, TeachingCoveragePlanRepository teachingCoveragePlanRepository, LecturingConverter lecturingConverter, TeachingCoveragePlanServiceImpl teachingCoveragePlanService, TeachingCoveragePlanConverter teachingCoveragePlanConverter, LecturerRepository lecturerRepository) {
         this.lecturingRepository = lecturingRepository;
@@ -47,6 +47,9 @@ public class LecturingServiceImpl implements LecturingService {
     public LecturingDTO saveLecturing(LecturingDTO lecturingDTO) {
         try{
             Lecturing lecturing = lecturingConverter.toEntity(lecturingDTO);
+            if(lecturing.getNumberOfClasses() > NUM_OF_CLASSES){
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Lecturer cannot have more than "+ NUM_OF_CLASSES + " classes per module subject!");
+            }
             Optional<TeachingCoveragePlan> teachingCoveragePlan = teachingCoveragePlanRepository.findById(lecturing.getTeachingCoveragePlan().getId());
             if(teachingCoveragePlan.isEmpty()){
                 TeachingCoveragePlanDTO tcdSaved = this.teachingCoveragePlanService.saveTeachingCoveragePlan(teachingCoveragePlanConverter.toDto(lecturing.getTeachingCoveragePlan()));
@@ -71,6 +74,9 @@ public class LecturingServiceImpl implements LecturingService {
         try {
             for (LecturingDTO lecturingDTO : lecturingDTOs) {
                 Lecturing lecturing = lecturingConverter.toEntity(lecturingDTO);
+                if(lecturing.getNumberOfClasses() > NUM_OF_CLASSES){
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Lecturer cannot have more than "+ NUM_OF_CLASSES + " classes per module subject!");
+                }
                 Optional<TeachingCoveragePlan> teachingCoveragePlan = teachingCoveragePlanRepository.findById(lecturing.getTeachingCoveragePlan().getId());
                 if (teachingCoveragePlan.isEmpty()) {
                     TeachingCoveragePlanDTO tcdSaved = this.teachingCoveragePlanService.saveTeachingCoveragePlan(teachingCoveragePlanConverter.toDto(lecturing.getTeachingCoveragePlan()));
