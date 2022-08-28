@@ -2,6 +2,7 @@ package rs.ac.bg.fon.njt.ppnd.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,11 +27,12 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public ModuleDTO getById(Long id) {
 	try {
-		Module module=this.moduleRepository.findById(id).get();
-		if(module==null) {
+		Optional<Module> module=this.moduleRepository.findById(id);
+		if(module.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Module with given id does not exist!");
 		}
-		return this.moduleConverter.toDto(module);
+		Module foundedModule = module.get();
+		return this.moduleConverter.toDto(foundedModule);
 	} catch (Exception e) {
 		throw e;
 	}
@@ -40,7 +42,7 @@ public class ModuleServiceImpl implements ModuleService {
 	public List<ModuleDTO> getAllModules() {
 		try {
 			List<Module>modules=this.moduleRepository.findAll();
-			if(modules==null || modules.size()==0) {
+			if(modules.size()==0) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No saved modules!");
 			}
 			List<ModuleDTO>moduleDtos=new ArrayList<>();
@@ -57,12 +59,13 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public ModuleDTO deleteModule(Long id) {
 		try {
-			Module m=this.moduleRepository.findById(id).get();
-			if(m==null) {
+			Optional<Module> module=this.moduleRepository.findById(id);
+			if(module.isEmpty()) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Module with given id does not exist!");
 			}
-			this.moduleRepository.delete(m);
-			return this.moduleConverter.toDto(m);
+			Module foundedModule = module.get();
+			this.moduleRepository.delete(foundedModule);
+			return this.moduleConverter.toDto(foundedModule);
 		} catch (Exception e) {
 			throw e;
 		}

@@ -18,12 +18,12 @@ public class ModuleController {
         return this.moduleService.getAllModules();
     }
 
-    @GetMapping("/:moduleId")
-    public ModuleDTO getModuleById(@RequestParam("moduleId")String moduleId){
-        return this.moduleService.getById(Long.valueOf(moduleId));
+    @GetMapping("/{moduleId}")
+    public ModuleDTO getModuleById(@PathVariable("moduleId")Long moduleId){
+        return this.moduleService.getById(moduleId);
     }
 
-    @DeleteMapping("/:moduleId")
+    @DeleteMapping("/{moduleId}")
     public ModuleDTO deleteModule(){
         return null;
     }
