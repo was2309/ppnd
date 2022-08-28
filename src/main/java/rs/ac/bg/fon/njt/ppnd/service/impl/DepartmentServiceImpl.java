@@ -12,6 +12,7 @@ import rs.ac.bg.fon.njt.ppnd.service.DepartmentService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -39,6 +40,19 @@ public class DepartmentServiceImpl implements DepartmentService {
                 dto.add(d);
             }));
             return dto;
+        } catch (Exception e){
+            throw e;
+        }
+    }
+
+    @Override
+    public DepartmentDTO getDepartmentById(Long departmentId) {
+        try {
+            Optional<Department> department = this.departmentRepository.findById(departmentId);
+            if(department.isEmpty()){
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, " No saved department with given id. ");
+            }
+            return this.departmentConverter.toDto(department.get());
         } catch (Exception e){
             throw e;
         }

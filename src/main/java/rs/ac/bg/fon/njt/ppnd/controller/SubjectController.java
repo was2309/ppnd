@@ -19,14 +19,14 @@ public class SubjectController {
         return this.subjectService.getAllSubjects();
     }
 
-    @GetMapping("/:subjectId")
-    public SubjectDTO getById(@RequestParam("subjectId")String subjectId){
-        return this.subjectService.getById(Long.valueOf(subjectId));
+    @GetMapping("/{subjectId}")
+    public SubjectDTO getById(@PathVariable("subjectId")Long subjectId){
+        return this.subjectService.getById(subjectId);
     }
 
-    @GetMapping("/module/:moduleId")
-    public List<SubjectDTO> getByModuleId(@RequestParam("moduleId")String moduleId){
-        return this.subjectService.getByModuleId(Long.valueOf(moduleId));
+    @GetMapping("/module/{moduleId}")
+    public List<SubjectDTO> getByModuleId(@PathVariable("moduleId")Long moduleId){
+        return this.subjectService.getByModuleId(moduleId);
     }
 
     @PostMapping("/save")
@@ -39,8 +39,8 @@ public class SubjectController {
         return this.subjectService.updateSubject(subjectDTO);
     }
 
-    @DeleteMapping("/delete/:subjectId")
-    public SubjectDTO deleteSubject(@RequestParam("subjectId")String subjectId){
-        return this.subjectService.deleteSubject(Long.valueOf(subjectId));
+    @DeleteMapping("/delete/{subjectId}")
+    public SubjectDTO deleteSubject(@PathVariable("subjectId")Long subjectId){
+        return this.subjectService.deleteSubject(subjectId);
     }
 }

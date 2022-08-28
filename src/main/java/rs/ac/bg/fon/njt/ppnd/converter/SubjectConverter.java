@@ -11,22 +11,21 @@ import rs.ac.bg.fon.njt.ppnd.dto.ModuleSubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.SubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.model.Department;
 import rs.ac.bg.fon.njt.ppnd.model.Subject;
+import rs.ac.bg.fon.njt.ppnd.service.impl.DepartmentServiceImpl;
 
 @Component
 public class SubjectConverter implements Converter<SubjectDTO, Subject>{
 
 
 	@Autowired
-	public SubjectConverter() {
+	DepartmentConverter departmentConverter;
 
-	}
+	@Autowired
+	DepartmentServiceImpl departmentService;
 
 	@Override
 	public Subject toEntity(SubjectDTO d) {
-		Department department=new Department();
-		department.setId(d.getDepartment().getId());
-		department.setName(d.getDepartment().getName());
-		department.setNumberOfMembers(d.getDepartment().getNumberOfMembers());
+		Department department=this.departmentConverter.toEntity(this.departmentService.getDepartmentById(d.getDepartment().getId()));
 		return new Subject(d.getId(), d.getName(), d.getLecutresPerWeek(), d.getExercisesPerWeek(), d.getLabExercisesPerWeek(), department);
 	}
 
