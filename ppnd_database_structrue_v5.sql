@@ -317,7 +317,7 @@ CREATE TABLE `hibernate_sequence` (
 /*Data for the table `hibernate_sequence` */
 
 insert  into `hibernate_sequence`(`next_val`) values 
-(1);
+(21);
 
 /*Table structure for table `lecturing` */
 
@@ -351,9 +351,23 @@ CREATE TABLE `module` (
   KEY `module_id` (`module_id`),
   KEY `study_program_id` (`study_program_id`),
   CONSTRAINT `module_ibfk_2` FOREIGN KEY (`study_program_id`) REFERENCES `study_program` (`study_program_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `module` */
+
+insert  into `module`(`module_id`,`study_program_id`,`module_name`) values 
+(1,1,'Informacione tehnologije'),
+(2,1,'Informacioni sistemi'),
+(3,1,'Informaciono inzenjerstvo'),
+(4,1,'Poslovna analitika'),
+(5,1,'Softversko inzenjerstvo'),
+(6,1,'Tehnologije elektronskog poslovanja'),
+(7,2,'Finansijski menadzment'),
+(8,2,'Lin organizacija poslovanja'),
+(9,2,'Marketing menadzment i komunikacije'),
+(10,2,'Menadzment kvaliteta i standardizacija'),
+(11,2,'Operacioni menadzment'),
+(12,2,'Projektni menadzment');
 
 /*Table structure for table `module_subject` */
 
@@ -384,9 +398,13 @@ CREATE TABLE `study_program` (
   `study_program_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `study_program_name` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`study_program_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `study_program` */
+
+insert  into `study_program`(`study_program_id`,`study_program_name`) values 
+(1,'Informacioni sistemi i tehnologije'),
+(2,'Menadzment i organizacija');
 
 /*Table structure for table `subject` */
 
@@ -395,20 +413,20 @@ DROP TABLE IF EXISTS `subject`;
 CREATE TABLE `subject` (
   `subject_id` bigint(20) unsigned NOT NULL,
   `subject_name` varchar(100) DEFAULT NULL,
-  `number_of_espb` int(11) DEFAULT NULL,
   `department_id` bigint(20) unsigned NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `excercies_per_week` int(11) NOT NULL,
-  `lab_excercises_per_week` int(11) NOT NULL,
-  `lecutres_per_week` int(11) NOT NULL,
   `excercises_per_week` int(11) DEFAULT NULL,
   `lectures_per_week` int(11) DEFAULT NULL,
+  `lab_excercises_per_week` int(11) DEFAULT NULL,
   PRIMARY KEY (`subject_id`),
   KEY `department_id` (`department_id`),
   CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`department_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `subject` */
+
+insert  into `subject`(`subject_id`,`subject_name`,`department_id`,`excercises_per_week`,`lectures_per_week`,`lab_excercises_per_week`) values 
+(17,'Projektovanje softvera',15,1,2,1),
+(20,'Napredne java tehnologije',15,1,2,1);
 
 /*Table structure for table `teaching_coverage_plan` */
 
