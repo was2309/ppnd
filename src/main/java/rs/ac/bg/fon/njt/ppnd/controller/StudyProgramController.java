@@ -21,8 +21,8 @@ public class StudyProgramController {
         return this.studyProgramService.getAllStudyPrograms();
     }
 
-    @GetMapping("/:studyProgramId")
-    public StudyProgramDTO getStudyProgramById(@RequestParam("studyProgramId") String studyProgramId ){
+    @GetMapping("/{studyProgramId}")
+    public StudyProgramDTO getStudyProgramById(@PathVariable("studyProgramId") String studyProgramId ){
         return this.studyProgramService.getBuyId(Long.valueOf(studyProgramId));
     }
 
@@ -31,8 +31,8 @@ public class StudyProgramController {
         return this.studyProgramService.saveStudyProgram(studyProgramDTO);
     }
 
-    @DeleteMapping("/delete/:studyProgramId")
-    public StudyProgramDTO deleteStudyProgram(@RequestParam("studyProgramId") String studyProgramId){
+    @DeleteMapping("/delete/{studyProgramId}")
+    public StudyProgramDTO deleteStudyProgram(@PathVariable("studyProgramId") String studyProgramId){
         return this.studyProgramService.deleteStudyProgram(Long.valueOf(studyProgramId));
     }
 

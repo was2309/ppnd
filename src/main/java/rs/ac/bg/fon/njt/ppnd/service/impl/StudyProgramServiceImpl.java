@@ -2,6 +2,7 @@ package rs.ac.bg.fon.njt.ppnd.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,10 +27,11 @@ public class StudyProgramServiceImpl implements StudyProgramService{
 	@Override
 	public StudyProgramDTO getBuyId(Long id) {
 		try {
-			StudyProgram program=this.studyProgramRepository.findById(id).get();
-			if(program==null) {
+			Optional<StudyProgram> studyProgram=this.studyProgramRepository.findById(id);
+			if(studyProgram.isEmpty()) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Study program with given id does not exist!");
 			}
+			StudyProgram program = studyProgram.get();
 			return this.studyProgramConverter.toDto(program);
 		} catch (Exception e) {
 			throw e;
@@ -51,10 +53,11 @@ public class StudyProgramServiceImpl implements StudyProgramService{
 	@Override
 	public StudyProgramDTO deleteStudyProgram(Long id) {
 		try {
-			StudyProgram foundStudyProgram=this.studyProgramRepository.findById(id).get();
-			if(foundStudyProgram==null) {
+			Optional<StudyProgram> studyProgram=this.studyProgramRepository.findById(id);
+			if(studyProgram.isEmpty()) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Study program with given id does not exist!");
 			}
+			StudyProgram foundStudyProgram = studyProgram.get();
 			this.studyProgramRepository.delete(foundStudyProgram);
 			return this.studyProgramConverter.toDto(foundStudyProgram);
 		} catch (Exception e) {
@@ -72,7 +75,7 @@ public class StudyProgramServiceImpl implements StudyProgramService{
 			List<StudyProgramDTO> dto=new ArrayList<>();
 			studyPrograms.forEach((studyProgram)->{
 				StudyProgramDTO s=this.studyProgramConverter.toDto(studyProgram);
-				studyPrograms.add(studyProgram);
+				dto.add(s);
 			});
 			return dto;
 		} catch (Exception e) {
@@ -81,13 +84,14 @@ public class StudyProgramServiceImpl implements StudyProgramService{
 	}
 
 	@Override
-	public StudyProgramDTO updateStudyProgram(StudyProgramDTO studyProgram) {
+	public StudyProgramDTO updateStudyProgram(StudyProgramDTO studyProgramDTO) {
 		try {
-			StudyProgram foundStudyProgram=this.studyProgramRepository.findById(studyProgram.getId()).get();
-			if(foundStudyProgram==null) {
+			Optional<StudyProgram> studyProgram=this.studyProgramRepository.findById(studyProgramDTO.getId());
+			if(studyProgram.isEmpty()) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Study program with given id does not exist!");
 			}
-			foundStudyProgram.setName(studyProgram.getName());
+			StudyProgram foundStudyProgram = studyProgram.get();
+			foundStudyProgram.setName(studyProgramDTO.getName());
 			StudyProgram updatedStudyProgram=this.studyProgramRepository.save(foundStudyProgram);
 			return this.studyProgramConverter.toDto(updatedStudyProgram);
 		} catch (Exception e) {
