@@ -21,9 +21,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service implementation which contains business logic for lecturing entity
+ *
+ * @author Vasilije
+ */
 @Service
 public class LecturingServiceImpl implements LecturingService {
 
+    //TODO: javadoc
     private final LecturingRepository lecturingRepository;
     private final TeachingCoveragePlanRepository teachingCoveragePlanRepository;
     private final LecturingConverter lecturingConverter;
@@ -42,7 +48,12 @@ public class LecturingServiceImpl implements LecturingService {
     }
 
 
-
+    /**
+     * Saves lecturing from given lecturingDTO
+     * @param lecturingDTO - LecturingDTO object which is intended to be saved
+     * @return lecturingDTO - LecturingDTO object which represents newly saved lecturing
+     * @throws ResponseStatusException - if value restrictions are not satisfied or lecturer with given id is not founded
+     */
     @Override
     public LecturingDTO saveLecturing(LecturingDTO lecturingDTO) {
         try{
@@ -68,6 +79,12 @@ public class LecturingServiceImpl implements LecturingService {
         }
     }
 
+    /**
+     * Saves list of lecturings from given List of lecturingDTOs
+     * @param lecturingDTOs - List of LecturingDTO object which are intended to be saved
+     * @return lecturingDTO - List of LecturingDTO object which represents newly saved lecturings
+     * @throws ResponseStatusException - if value restrictions are not satisfied or lecturer with given id is not founded
+     */
     @Override
     public List<LecturingDTO> saveListOfLecturings(List<LecturingDTO> lecturingDTOs) {
         List<LecturingDTO> savedLecturings = new ArrayList<>();
@@ -101,6 +118,12 @@ public class LecturingServiceImpl implements LecturingService {
 
     }
 
+    /**
+     * Deletes lecturing with given id, if exists
+     * @param id - id of lecturing
+     * @return LecturingDTO - object that is deleted
+     * @throws ResponseStatusException if there is no saved lecturing with given id
+     */
     @Override
     public LecturingDTO deleteLecturing(Long id) {
         try{
@@ -120,6 +143,12 @@ public class LecturingServiceImpl implements LecturingService {
         return null;
     }
 
+    /**
+     * Returns lecturing by given id - if recorded
+     * @param id - id of the lecturing
+     * @return LecturingDTO - LecturingDTO object which represents founded lecturing
+     * @throws ResponseStatusException - if there is no saved lecturing with given id
+     */
     @Override
     public LecturingDTO getById(Long id) {
         try{
@@ -133,6 +162,12 @@ public class LecturingServiceImpl implements LecturingService {
         }
     }
 
+    /**
+     * Returns lecturings by teaching coverage plan id - if recorded
+     * @param teachingCoveragePlanId - id of the teaching coverage plan
+     * @return List - List of LecturingDTO object which represents founded lecturings
+     * @throws ResponseStatusException - if there is no saved lecturings for teaching coverage plan with given id
+     */
     @Override
     public List<LecturingDTO> getAllLecturingsByTCP(Long teachingCoveragePlanId) {
        try{
