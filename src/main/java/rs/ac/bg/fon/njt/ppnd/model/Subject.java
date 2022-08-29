@@ -29,7 +29,7 @@ public class Subject {
     @JoinColumn(name = "department_id")
     private Department department;
 
-    @OneToMany(mappedBy = "module")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "subject")
     List<ModuleSubject> moduleSubjects;
 
 	public Subject(Long id, String name, int lecutresPerWeek, int excerciesPerWeek, int labExcercisesPerWeek,

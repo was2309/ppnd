@@ -26,14 +26,15 @@ public class LecturingConverter implements Converter<LecturingDTO, Lecturing>{
 	public Lecturing toEntity(LecturingDTO d) {
 		TeachingCoveragePlan t=coveragePlanConverter.toEntity(d.getTeachingCoveragePlan());
 		Lecturer l = new Lecturer();
-		l.setId(d.getLecturer());
+		l.setId(d.getLecturer().getId());
 		return new Lecturing(d.getId(), d.getNumberOfClasses(), l, t, d.getTeachingForm());
 	}
 
 	@Override
 	public LecturingDTO toDto(Lecturing e) {
 		TeachingCoveragePlanDTO teachingCoverage=coveragePlanConverter.toDto(e.getTeachingCoveragePlan());
-		return new LecturingDTO(e.getId(), e.getNumberOfClasses(), e.getLecturer().getId(),teachingCoverage, e.getTeachingForm());
+		return null;
+//		return new LecturingDTO(e.getId(), e.getNumberOfClasses(), e.getLecturer(),teachingCoverage, e.getTeachingForm());
 	}
 
 

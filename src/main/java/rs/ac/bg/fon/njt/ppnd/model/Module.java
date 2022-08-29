@@ -26,7 +26,7 @@ public class Module {
     private StudyProgram studyProgram;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "subject")
+    @OneToMany(mappedBy = "module")
     List<ModuleSubject> moduleSubjects;
 
 	public Module(Long id, String name, StudyProgram studyProgram) {
