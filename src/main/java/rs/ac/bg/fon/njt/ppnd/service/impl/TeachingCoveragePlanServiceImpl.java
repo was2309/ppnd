@@ -17,17 +17,53 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service implementation which contains business logic for teaching coverage plan entity
+ *
+ * @author Vasilije
+ */
 @Service
 public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanService {
 
+    /**
+     * Repository for teaching coverage plan entity
+     */
     private final TeachingCoveragePlanRepository teachingCoveragePlanRepository;
+    /**
+     * Converter for teaching coverage plan entity
+     */
     private final TeachingCoveragePlanConverter teachingCoveragePlanConverter;
+    /**
+     * Repository for year entity
+     */
     private final YearRepository yearRepository;
+    /**
+     * Repository for moduleSubject entity
+     */
     private final ModuleSubjectRepository moduleSubjectRepository;
+    /**
+     * Service for saving teaching coverage plan in json file
+     */
     private final SaveTCPInJsonFileServiceImpl saveTCPInJsonFileService;
+    /**
+     * Repository for lecturer entity
+     */
     private final LecturerRepository lecturerRepository;
+    /**
+     * Repository for lecturing entity
+     */
     private final LecturingRepository lecturingRepository;
 
+    /**
+     * Constructor with parameters
+     * @param teachingCoveragePlanConverter - Converter for teaching coverage plan entity
+     * @param yearRepository - Repository for year entity
+     * @param moduleSubjectRepository - Repository for moduleSubject entity
+     * @param saveTCPInJsonFileService - Service for saving teaching coverage plan in json file
+     * @param teachingCoveragePlanRepository - Repository for teaching coverage plan entity
+     * @param lecturerRepository - Repository for lecturer entity
+     * @param lecturingRepository - Repository for lecturing entity
+     */
     @Autowired
     public TeachingCoveragePlanServiceImpl(TeachingCoveragePlanConverter teachingCoveragePlanConverter, YearRepository yearRepository, ModuleSubjectRepository moduleSubjectRepository, SaveTCPInJsonFileServiceImpl saveTCPInJsonFileService, TeachingCoveragePlanRepository teachingCoveragePlanRepository, LecturerRepository lecturerRepository, LecturingRepository lecturingRepository) {
         this.teachingCoveragePlanConverter = teachingCoveragePlanConverter;
@@ -43,7 +79,7 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
      * Returns all teaching covering plans for specific yearId
      * @param yearId - id of the year
      * @return List of TeachingCoveragePlanDTO
-     * @throws ResponseStatusException if there is no saved teaching covering plans for specific yearId
+     * @throws ResponseStatusException if there is no saved teaching covering plans for specific yearId, or if there is no year with given id
      */
     @Override
     @Transactional
@@ -73,7 +109,7 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
      * Returns all teaching covering plans for specific moduleSubjectId
      * @param moduleSubjectId - id of the module
      * @return List of TeachingCoveragePlanDTO
-     * @throws ResponseStatusException if there is no saved teaching covering plans for specific moduleSubjectId
+     * @throws ResponseStatusException if there is no saved teaching covering plans for specific moduleSubjectId, or there is no module subject with given id
      */
     @Override
     @Transactional
@@ -205,6 +241,12 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
         }
     }
 
+    /**
+     * Updates teaching coverage plan with info from given teachingCoveragePlanDTO
+     * @param teachingCoveragePlanDTO - TeachingCoveragePlanDTO with info to be updated
+     * @return TeachingCoveragePlanDTO of updated teaching coverage plan
+     * @throws ResponseStatusException if there is no teaching coverage plan, year or moduleSubject with given id
+     */
     @Override
     @Transactional
     public TeachingCoveragePlanDTO updateTeachingCoveragePlanDto(TeachingCoveragePlanDTO teachingCoveragePlanDTO) {

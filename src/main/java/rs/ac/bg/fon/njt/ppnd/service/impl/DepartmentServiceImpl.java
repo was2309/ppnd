@@ -22,12 +22,21 @@ import java.util.Optional;
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
-    //TODO: javadoc
+    /**
+     * Repository for department entity
+     */
     private final DepartmentRepository departmentRepository;
 
-    //TODO: javadoc
+    /**
+     * Converter for department entity
+     */
     private final DepartmentConverter departmentConverter;
 
+    /**
+     * Constructor with params
+     * @param departmentRepository - Repository for department entity
+     * @param departmentConverter - Converter for department entity
+     */
     @Autowired
     public DepartmentServiceImpl(DepartmentRepository departmentRepository, DepartmentConverter departmentConverter) {
         this.departmentRepository = departmentRepository;

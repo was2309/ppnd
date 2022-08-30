@@ -14,13 +14,22 @@ import rs.ac.bg.fon.njt.ppnd.dto.ModuleDTO;
 import rs.ac.bg.fon.njt.ppnd.model.Module;
 import rs.ac.bg.fon.njt.ppnd.repository.ModuleRepository;
 import rs.ac.bg.fon.njt.ppnd.service.ModuleService;
+/**
+ * Service implementation which contains business logic for module entity
+ *
+ * @author Vasilije
+ */
 @Service
 public class ModuleServiceImpl implements ModuleService {
 
-	//TODO: javadoc
+	/**
+	 * Repository for module entity
+	 */
 	@Autowired
 	ModuleRepository moduleRepository;
-	//TODO: javadoc
+	/**
+	 * Converter for module entity
+	 */
 	@Autowired
 	ModuleConverter moduleConverter;
 
@@ -68,7 +77,7 @@ public class ModuleServiceImpl implements ModuleService {
 	}
 
 	/**
-	 * Deletes module with given id
+	 * Deletes module with given id (This method is not going to be active)
 	 * @param id - id of the module
 	 * @return ModuleDTO - dto of deleted module
 	 * @throws ResponseStatusException - if there is no module with given id

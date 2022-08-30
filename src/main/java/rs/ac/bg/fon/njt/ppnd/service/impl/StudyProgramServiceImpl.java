@@ -15,12 +15,23 @@ import rs.ac.bg.fon.njt.ppnd.dto.StudyProgramDTO;
 import rs.ac.bg.fon.njt.ppnd.model.StudyProgram;
 import rs.ac.bg.fon.njt.ppnd.repository.StudyProgramRepository;
 import rs.ac.bg.fon.njt.ppnd.service.StudyProgramService;
+/**
+ * Service implementation which contains business logic for study program entity
+ *
+ * @author Vasilije
+ */
 @Service
 public class StudyProgramServiceImpl implements StudyProgramService{
-	
+
+	/**
+	 * Repository for study program entity
+	 */
 	@Autowired
 	StudyProgramRepository studyProgramRepository;
-	
+
+	/**
+	 * Converter for study program entity
+	 */
 	@Autowired
 	StudyProgramConverter studyProgramConverter;
 

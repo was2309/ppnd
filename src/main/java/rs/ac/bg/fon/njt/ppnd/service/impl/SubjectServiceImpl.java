@@ -27,24 +27,59 @@ import rs.ac.bg.fon.njt.ppnd.service.SubjectService;
 
 import javax.transaction.Transactional;
 
+/**
+ * Service implementation which contains business logic for subject entity
+ *
+ * @author Vasilije
+ */
 @Service
 public class SubjectServiceImpl implements SubjectService {
 
-
+    /**
+     * Repository for subject entity
+     */
     private final SubjectRepository subjectRepository;
 
+    /**
+     * Converter for subject entity
+     */
     private final SubjectConverter subjectConverter;
 
+    /**
+     * Repository for module entity
+     */
     private final ModuleRepository moduleRepository;
 
+    /**
+     * Repository for moduleSubject entity
+     */
     private final ModuleSubjectRepository moduleSubjectRepository;
 
+    /**
+     *  Service for module entity and module business logic
+     */
     private final ModuleService moduleService;
 
+    /**
+     * Converter for module entity
+     */
     private final ModuleConverter moduleConverter;
 
+    /**
+     * Repository for department entity
+     */
     private final DepartmentRepository departmentRepository;
 
+    /**
+     * Constructor with parameters
+     * @param subjectRepository - Repository for subject entity
+     * @param subjectConverter - Converter for subject entity
+     * @param moduleRepository - Repository for module entity
+     * @param moduleSubjectRepository - Repository for moduleSubject entity
+     * @param moduleService - Service for module entity and module business logic
+     * @param moduleConverter - Converter for module entity
+     * @param departmentRepository - Repository for department entity
+     */
     public SubjectServiceImpl(SubjectRepository subjectRepository, SubjectConverter subjectConverter, ModuleRepository moduleRepository, ModuleSubjectRepository moduleSubjectRepository, ModuleService moduleService, ModuleConverter moduleConverter, DepartmentRepository departmentRepository) {
         this.subjectRepository = subjectRepository;
         this.subjectConverter = subjectConverter;
@@ -200,7 +235,7 @@ public class SubjectServiceImpl implements SubjectService {
 	 * Updates subject from given SubjectDTO
 	 * @param subjectDTO - SubjectDTO of subject ot be updated
 	 * @return SubjectDTO of updated subject
-	 * @throws ResponseStatusException if there is no saved subject with given id
+	 * @throws ResponseStatusException if there is no saved subject with given id, or if there is no department with given id
 	 */
     @Override
     @Transactional
@@ -244,7 +279,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
 	/**
-	 * Returns subjects from specific module
+	 * Returns subjects from specific module (This method is not active)
 	 * @param moduleId - id of the module
 	 * @return List of SubjectDTOs
 	 * @throws ResponseStatusException if there is no module with given id
