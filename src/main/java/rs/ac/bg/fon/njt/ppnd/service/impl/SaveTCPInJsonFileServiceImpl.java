@@ -7,9 +7,18 @@ import com.google.gson.GsonBuilder;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.njt.ppnd.dto.TeachingCoveragePlanDTO;
 
+/**
+ * Class for saving founded tcp in json file
+ *
+ * @author Vasilije
+ */
 @Component
 public class SaveTCPInJsonFileServiceImpl {
 
+    /**
+     * Saves founded tcpDTO in .json file
+     * @param tcpDTO - TeachingCoveragePlanDTO intended to be saved in .json file
+     */
     void saveTCPToFile(TeachingCoveragePlanDTO tcpDTO){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 

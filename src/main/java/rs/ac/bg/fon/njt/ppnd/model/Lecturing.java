@@ -98,7 +98,7 @@ public class Lecturing {
 	/**
 	 * Sets number of classes of the lecturing held by lecturer.
 	 * @param numberOfClasses - Number of classes of the lecturing held by lecturer.
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if number of classes is less than 0 and greater than 13
 	 */
 	public void setNumberOfClasses(int numberOfClasses) {
 		if(numberOfClasses < 0 || numberOfClasses > 13) throw new IllegalArgumentException();
@@ -116,7 +116,7 @@ public class Lecturing {
 	/**
 	 * Sets lecturer holding the lecturing.
 	 * @param lecturer - lecturer holding the lecturing.
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if lecturer is null
 	 */
 	public void setLecturer(Lecturer lecturer) {
 		if(lecturer == null) throw new IllegalArgumentException();
@@ -134,7 +134,7 @@ public class Lecturing {
 	/**
 	 * Sets teaching coverage plan that contains the lecturing.
 	 * @param teachingCoveragePlan - teaching coverage plan that contains the lecturing.
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if teaching coverage plan is null
 	 */
 	public void setTeachingCoveragePlan(TeachingCoveragePlan teachingCoveragePlan) {
 		if(teachingCoveragePlan == null) throw new IllegalArgumentException();
@@ -152,7 +152,7 @@ public class Lecturing {
 	/**
 	 * Sets teaching form of the lecturing.
 	 * @param teachingForm - teaching form of the lecturing.
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if teaching form is null
 	 */
 	public void setTeachingForm(TeachingForm teachingForm) {
 		if(teachingForm == null) throw new IllegalArgumentException();

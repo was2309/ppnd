@@ -30,8 +30,8 @@ public class StudyProgram {
 
 	/**
 	 * Constructor with parameters.
-	 * @param id
-	 * @param name
+	 * @param id - id of the study program
+	 * @param name - name of the study program
 	 */
 	public StudyProgram(Long id, String name) {
 		super();
@@ -73,7 +73,7 @@ public class StudyProgram {
 	/**
 	 * Sets name of study program.
 	 * @param name
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if name is null
 	 */
 	public void setName(String name) {
 		if(name == null) throw new IllegalArgumentException();

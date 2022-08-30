@@ -105,7 +105,7 @@ public class Employee {
 	/**
 	 * Sets first name of the employee.
 	 * @param firstName - first name of the employee
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if first name is null
 	 */
 	public void setFirstName(String firstName) {
 		if(firstName == null) throw new IllegalArgumentException();
@@ -123,7 +123,7 @@ public class Employee {
 	/**
 	 * Sets last name of the employee.
 	 * @param lastName - last name of the employee
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if last name is null
 	 */
 	public void setLastName(String lastName) {
 		if(lastName == null) throw new IllegalArgumentException();
@@ -141,7 +141,7 @@ public class Employee {
 	/**
 	 * Sets birthday of the employee.
 	 * @param birthday - birthday of the employee
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if birthday is null
 	 */
 	public void setBirthday(Date birthday) {
 		if(birthday == null) throw new IllegalArgumentException();
@@ -159,7 +159,7 @@ public class Employee {
 	/**
 	 * Sets education title of the employee.
 	 * @param title - education title of the employee
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if education title is null
 	 */
 	public void setTitle(EducationTitle title) {
 		if(title == null) throw new IllegalArgumentException();
@@ -177,7 +177,7 @@ public class Employee {
 	/**
 	 * Sets department of the employee.
 	 * @param department - department of the employee
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if department is null
 	 */
 	public void setDepartment(Department department) {
 		if(department == null) throw new IllegalArgumentException();

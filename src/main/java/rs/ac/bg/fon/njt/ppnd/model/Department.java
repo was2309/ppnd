@@ -99,7 +99,7 @@ public class Department {
 	/**
 	 * Sets name of the department
 	 * @param name - name of the department
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if name is null
 	 */
 	public void setName(String name) {
 		if(name == null) {
@@ -119,7 +119,7 @@ public class Department {
 	/**
 	 * Sets number of employees engaged in the department.
 	 * @param numberOfMembers - number of employees engaged in the department
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if number of members is less than zero
 	 */
 	public void setNumberOfMembers(int numberOfMembers) {
 		if(numberOfMembers < 0){
@@ -139,7 +139,7 @@ public class Department {
 	/**
 	 * Sets type of the department.
 	 * @param type - type of the department
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if department type is null
 	 */
 	public void setType(DepartmentType type) {
 		if(type == null) {

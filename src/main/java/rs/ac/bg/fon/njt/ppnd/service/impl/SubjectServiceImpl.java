@@ -14,7 +14,6 @@ import rs.ac.bg.fon.njt.ppnd.converter.ModuleConverter;
 import rs.ac.bg.fon.njt.ppnd.converter.ModuleSubjectConverter;
 import rs.ac.bg.fon.njt.ppnd.converter.SubjectConverter;
 import rs.ac.bg.fon.njt.ppnd.dto.ModuleDTO;
-import rs.ac.bg.fon.njt.ppnd.dto.ModuleSubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.SubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.model.Module;
 import rs.ac.bg.fon.njt.ppnd.model.ModuleSubject;
@@ -48,6 +47,12 @@ public class SubjectServiceImpl implements SubjectService {
 	@Autowired
 	DepartmentServiceImpl departmentService;
 
+	/**
+	 * Saves subject from given SubjectDTO
+	 * @param subjectDTO - contains info about subject to be saved
+	 * @return SubjectDTO of saved subject
+	 * @throws ResponseStatusException if there is no department with given id
+	 */
 	@Override
 	public SubjectDTO saveSubject(SubjectDTO subjectDTO) {
 		try {
@@ -68,6 +73,11 @@ public class SubjectServiceImpl implements SubjectService {
 		}
 	}
 
+	/**
+	 * Returns all subjects
+	 * @return List of SubjectDTOs
+	 * @throws ResponseStatusException if there is no saved subjects
+	 */
 	@Override
 	public List<SubjectDTO> getAllSubjects() {
 		try {
@@ -86,6 +96,12 @@ public class SubjectServiceImpl implements SubjectService {
 		}
 	}
 
+	/**
+	 * Returns subject founded by given id
+	 * @param id - id of the subject
+	 * @return SubjectDTO of founded subject
+	 * @throws ResponseStatusException if there is no saved subject with given id
+	 */
 	@Override
 	public SubjectDTO getById(Long id) {
 		try {
@@ -100,6 +116,12 @@ public class SubjectServiceImpl implements SubjectService {
 		}
 	}
 
+	/**
+	 * Deletes subject with given id
+	 * @param id - id of the subject
+	 * @return SubjectDTO of deleted subject
+	 * @throws ResponseStatusException if there is no subject with given id
+	 */
 	@Override
 	public SubjectDTO deleteSubject(Long id) {
 		try {
@@ -115,6 +137,12 @@ public class SubjectServiceImpl implements SubjectService {
 		}
 	}
 
+	/**
+	 * Updates subject from given SubjectDTO
+	 * @param dto - SubjectDTO of subject ot be updated
+	 * @return SubjectDTO of updated subject
+	 * @throws ResponseStatusException if there is no saved subject with given id
+	 */
 	@Override
 	public SubjectDTO updateSubject(SubjectDTO dto) {
 		try {
@@ -131,6 +159,12 @@ public class SubjectServiceImpl implements SubjectService {
 		}
 	}
 
+	/**
+	 * Returns subjects from specific module
+	 * @param moduleId - id of the module
+	 * @return List of SubjectDTOs
+	 * @throws ResponseStatusException if there is no module with given id
+	 */
 	@Override
 	public List<SubjectDTO> getByModuleId(Long moduleId) {
 		try {

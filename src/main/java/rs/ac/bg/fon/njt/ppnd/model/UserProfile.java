@@ -42,11 +42,11 @@ public class UserProfile {
 
     /**
      * Constructor with parameters.
-     * @param id
-     * @param email
-     * @param password
-     * @param status
-     * @param employee
+     * @param id - id of the user profile
+     * @param email - email of the user profile
+     * @param password - password of the user profile
+     * @param status - status of the user profile
+     * @param employee - employee who manages user profile
      */
     public UserProfile(Long id, String email, String password, String status, Employee employee) {
         this.id = id;
@@ -89,7 +89,7 @@ public class UserProfile {
     /**
      * Sets email of the profile.
      * @param email - email of the profile
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException - if email is null
      */
     public void setEmail(String email) {
         if(email == null) throw new IllegalArgumentException();
@@ -106,7 +106,7 @@ public class UserProfile {
     /**
      * Sets password of the profile.
      * @param password - password of the profile
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException - if password is null
      */
     public void setPassword(String password) {
         if(password == null) throw new IllegalArgumentException();
@@ -140,6 +140,7 @@ public class UserProfile {
     /**
      * Sets employee who manages the profile
      * @param employee - employee who manages the profile
+     * @throws IllegalArgumentException - if employee is null
      */
     public void setEmployee(Employee employee) {
         if (employee == null) throw new IllegalArgumentException();

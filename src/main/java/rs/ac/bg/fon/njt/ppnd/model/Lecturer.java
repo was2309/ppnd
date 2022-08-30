@@ -63,7 +63,7 @@ public class Lecturer extends Employee {
 	 * Sets academic title of the lecturer.
 	 *
 	 * @param academicTitle - academic title of the lecturer
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if academic title is null
 	 */
 	public void setAcademicTitle(AcademicTitle academicTitle) {
 		if(academicTitle == null) throw new IllegalArgumentException();

@@ -44,9 +44,9 @@ public class Year {
 
 	/**
 	 * Constructor with parameters
-	 * @param id
-	 * @param studyYear
-	 * @param studyProgram
+	 * @param id - id of the year
+	 * @param studyYear - full name of the study year in format YYYY/YYYY e.g. 2022/2023
+	 * @param studyProgram - studyProgram for the year
 	 */
 	public Year(Long id, String studyYear, StudyProgram studyProgram) {
 		super();
@@ -106,7 +106,7 @@ public class Year {
 	/**
 	 * Sets study program of the year
 	 * @param studyProgram - study program of the year
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if studyProgram is null
 	 */
 	public void setStudyProgram(StudyProgram studyProgram) {
 		if(studyProgram == null) throw new IllegalArgumentException();

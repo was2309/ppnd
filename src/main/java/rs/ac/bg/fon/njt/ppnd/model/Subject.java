@@ -61,12 +61,12 @@ public class Subject {
 
 	/**
 	 * Constructor with parameters
-	 * @param id
-	 * @param name
-	 * @param lecutresPerWeek
-	 * @param excerciesPerWeek
-	 * @param labExcercisesPerWeek
-	 * @param department
+	 * @param id - id of the subject
+	 * @param name - name of the subject
+	 * @param lecutresPerWeek - number of lectures per week of the subject
+	 * @param excerciesPerWeek - number of exercises per week of the subject
+	 * @param labExcercisesPerWeek - number of lab exercises per week of the subject
+	 * @param department - department responsible for the subject
 	 */
 	public Subject(Long id, String name, int lecutresPerWeek, int excerciesPerWeek, int labExcercisesPerWeek,
 			Department department) {
@@ -114,7 +114,7 @@ public class Subject {
 	/**
 	 * Sets name of the subject.
 	 * @param name - name of the subject.
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if name is null
 	 */
 	public void setName(String name) {
 		if(name == null) throw new IllegalArgumentException();
@@ -132,7 +132,7 @@ public class Subject {
 	/**
 	 * Sets number of lectures per week of the subject.
 	 * @param lecutresPerWeek - number of lectures per week of the subject.
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if lectures_per_week is less than 0
 	 */
 	public void setLecutresPerWeek(int lecutresPerWeek) {
 		if(lecutresPerWeek < 0) throw new IllegalArgumentException();
@@ -150,7 +150,7 @@ public class Subject {
 	/**
 	 * Sets number of excercies per week of the subject.
 	 * @param excerciesPerWeek - number of excercies per week of the subject.
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if excerciesPerWeek is less than 0
 	 */
 	public void setExcerciesPerWeek(int excerciesPerWeek) {
 		if(excerciesPerWeek < 0) throw new IllegalArgumentException();
@@ -168,7 +168,7 @@ public class Subject {
 	/**
 	 * Sets number of lab excercises per week of the subject.
 	 * @param labExcercisesPerWeek - number of lab excercises per week of the subject.
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if labExcercisesPerWeek is less than 0
 	 */
 	public void setLabExcercisesPerWeek(int labExcercisesPerWeek) {
 		if(labExcercisesPerWeek < 0) throw new IllegalArgumentException();
@@ -186,7 +186,7 @@ public class Subject {
 	/**
 	 * Sets department of the subject
 	 * @param department - department of the subject
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if department is null
 	 */
 	public void setDepartment(Department department) {
 		if(department == null) throw new IllegalArgumentException();

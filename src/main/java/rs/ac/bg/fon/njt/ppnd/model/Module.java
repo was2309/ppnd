@@ -95,7 +95,7 @@ public class Module {
 	/**
 	 * Sets name of the module.
 	 * @param name - name  of the module
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if name is null
 	 */
 	public void setName(String name) {
 		if(name == null) throw new IllegalArgumentException();
@@ -113,7 +113,7 @@ public class Module {
 	/**
 	 * Sets study program of the module.
 	 * @param studyProgram - study program of the module
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if study program is null
 	 */
 	public void setStudyProgram(StudyProgram studyProgram) {
 		if(studyProgram == null) throw new IllegalArgumentException();

@@ -27,6 +27,12 @@ public class YearServiceImpl implements YearService{
 	@Autowired
 	YearConverter yearConverter;
 
+	/**
+	 * Returns year with given id
+	 * @param id - id of the year
+	 * @return YearDTO of founded year
+	 * @throws ResponseStatusException if there is no year with given id
+	 */
 	@Override
 	public YearDTO getById(Long id) {
 		try {
@@ -40,6 +46,11 @@ public class YearServiceImpl implements YearService{
 		}
 	}
 
+	/**
+	 * Returns all saved years
+	 * @return List of YearDTOs
+	 * @throws ResponseStatusException if there is no saved years
+	 */
 	@Override
 	public List<YearDTO> getAllYears() {
 		try {
@@ -58,6 +69,12 @@ public class YearServiceImpl implements YearService{
 		}
 	}
 
+	/**
+	 * Saves year from given yearDTO
+	 * @param yearDTO - YearDTO with info about year
+	 * @return YearDTO of saved year
+	 * @throws ResponseStatusException if there is no study program with given id
+	 */
 	@Override
 	public YearDTO saveYear(YearDTO yearDTO) {
 		try {
@@ -73,6 +90,12 @@ public class YearServiceImpl implements YearService{
 		}
 	}
 
+	/**
+	 * Deletes year with given id
+	 * @param id - id of the year
+	 * @return YearDTO of the deleted year
+	 * @throws ResponseStatusException if there is no year with given id
+	 */
 	@Override
 	public YearDTO deleteYear(Long id) {
 		try {
@@ -87,6 +110,12 @@ public class YearServiceImpl implements YearService{
 		}
 	}
 
+	/**
+	 * Updates year from given yearDTO
+	 * @param yearDto - YearDTO with info about year to be updated
+	 * @return YearDTO of updated year
+	 * @throws ResponseStatusException if there is no year with given id or study program with given id
+	 */
 	@Override
 	public YearDTO updateYear(YearDTO yearDto) {
 		try {

@@ -69,13 +69,13 @@ public class ModuleSubject {
 
 	/**
 	 * Constructor with parameters
-	 * @param id
-	 * @param position
-	 * @param semester
-	 * @param subjectType
-	 * @param numOfESPB
-	 * @param subject
-	 * @param module
+	 * @param id - id of the moduleSubject
+	 * @param position - position of the subject in the module
+	 * @param semester - semester in which subject is executed in the module
+	 * @param subjectType - type of the subject in the module
+	 * @param numOfESPB - number of ESPB point for subject in th module
+	 * @param subject - subject
+	 * @param module - module
 	 */
 	public ModuleSubject(Long id, int position, int semester, SubjectType subjectType, int numOfESPB, Subject subject,
 			Module module) {
@@ -123,7 +123,7 @@ public class ModuleSubject {
 	/**
 	 * Sets position of the subject on the module
 	 * @param position - position of the subject on the module
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if position is less than 0
 	 */
 	public void setPosition(int position) {
 		if(position <0 ) throw new IllegalArgumentException();
@@ -141,7 +141,7 @@ public class ModuleSubject {
 	/**
 	 * Sets semester of the subject on the module
 	 * @param semester - semester of the subject on the module
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if semester is less than 0 and greater than 13
 	 */
 	public void setSemester(int semester) {
 		if(semester < 0 || semester > 8) throw new IllegalArgumentException();
@@ -159,7 +159,7 @@ public class ModuleSubject {
 	/**
 	 * Sets type of subject.
 	 * @param subjectType - type of subject
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if subject type is null
 	 */
 	public void setSubjectType(SubjectType subjectType) {
 		if(subjectType == null) throw new IllegalArgumentException();
@@ -177,7 +177,7 @@ public class ModuleSubject {
 	/**
 	 * Sets number of ESPB of subject.
 	 * @param numOfESPB - number of ESPB of subject
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if number of ESPB is less than 0
 	 */
 	public void setNumOfESPB(int numOfESPB) {
 		if(numOfESPB < 0) throw new IllegalArgumentException();
@@ -195,10 +195,10 @@ public class ModuleSubject {
 	/**
 	 * Sets subject of moduleSubject.
 	 * @param subject - subject of moduleSubject
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if subject is null
 	 */
 	public void setSubject(Subject subject) {
-		if(module == null) throw new IllegalArgumentException();
+		if(subject == null) throw new IllegalArgumentException();
 		this.subject = subject;
 	}
 
@@ -213,7 +213,7 @@ public class ModuleSubject {
 	/**
 	 * Sets module of moduleSubject.
 	 * @param module - module of moduleSubject
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if module is null
 	 */
 	public void setModule(Module module) {
 		if(module == null) throw new IllegalArgumentException();

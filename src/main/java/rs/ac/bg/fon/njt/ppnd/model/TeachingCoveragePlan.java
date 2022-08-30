@@ -44,10 +44,10 @@ public class TeachingCoveragePlan {
 
 	/**
 	 * Constructor with parameters
-	 * @param id
-	 * @param moduleSubject
-	 * @param year
-	 * @param lecturings
+	 * @param id - id of the teaching coverage plan
+	 * @param moduleSubject - moduleSubject for the the teaching coverage plan
+	 * @param year - year for the teaching coverage plan
+	 * @param lecturings - lecturings of the teaching coverage plan
 	 */
 	public TeachingCoveragePlan(Long id, ModuleSubject moduleSubject, Year year, List<Lecturing> lecturings) {
 		super();
@@ -91,10 +91,10 @@ public class TeachingCoveragePlan {
 	/**
 	 * Sets moduleSubject of teaching coverage plan.
 	 * @param moduleSubject - moduleSubject of teaching coverage plan
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if moduleSubject is null
 	 */
 	public void setModuleSubject(ModuleSubject moduleSubject) {
-		if(year == null) throw new IllegalArgumentException();
+		if(moduleSubject == null) throw new IllegalArgumentException();
 		this.moduleSubject = moduleSubject;
 	}
 
@@ -109,7 +109,7 @@ public class TeachingCoveragePlan {
 	/**
 	 * Sets year of teaching coverage plan.
 	 * @param year - year of teaching coverage plan
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException - if year is null
 	 */
 	public void setYear(Year year) {
 		if(year == null) throw new IllegalArgumentException();
