@@ -55,6 +55,12 @@ public class SubjectServiceImpl implements SubjectService {
         this.departmentRepository = departmentRepository;
     }
 
+	/**
+	 * Saves subject from given SubjectDTO
+	 * @param subjectDTO - contains info about subject to be saved
+	 * @return SubjectDTO of saved subject
+	 * @throws ResponseStatusException if there is no department with given id
+	 */
     @Override
     @Transactional
     public SubjectDTO saveSubject(SubjectDTO subjectDTO) {
@@ -93,6 +99,11 @@ public class SubjectServiceImpl implements SubjectService {
         }
     }
 
+	/**
+	 * Returns all subjects
+	 * @return List of SubjectDTOs
+	 * @throws ResponseStatusException if there is no saved subjects
+	 */
     @Override
     public List<SubjectDTO> getAllSubjects() {
         try {
@@ -111,6 +122,12 @@ public class SubjectServiceImpl implements SubjectService {
         }
     }
 
+	/**
+	 * Returns subject founded by given id
+	 * @param id - id of the subject
+	 * @return SubjectDTO of founded subject
+	 * @throws ResponseStatusException if there is no saved subject with given id
+	 */
     @Override
     public SubjectDTO getById(Long id) {
         try {
@@ -156,6 +173,12 @@ public class SubjectServiceImpl implements SubjectService {
         }
     }
 
+    /**
+	 * Deletes subject with given id
+	 * @param id - id of the subject
+	 * @return SubjectDTO of deleted subject
+	 * @throws ResponseStatusException if there is no subject with given id
+	 */
     @Override
     public SubjectDTO deleteSubject(Long id) {
         try {
@@ -173,6 +196,12 @@ public class SubjectServiceImpl implements SubjectService {
         }
     }
 
+	/**
+	 * Updates subject from given SubjectDTO
+	 * @param subjectDTO - SubjectDTO of subject ot be updated
+	 * @return SubjectDTO of updated subject
+	 * @throws ResponseStatusException if there is no saved subject with given id
+	 */
     @Override
     @Transactional
     public SubjectDTO updateSubject(SubjectDTO subjectDTO) {
@@ -214,6 +243,12 @@ public class SubjectServiceImpl implements SubjectService {
         }
     }
 
+	/**
+	 * Returns subjects from specific module
+	 * @param moduleId - id of the module
+	 * @return List of SubjectDTOs
+	 * @throws ResponseStatusException if there is no module with given id
+	 */
     @Override
     public List<SubjectDTO> getByModuleId(Long moduleId) {
         try {

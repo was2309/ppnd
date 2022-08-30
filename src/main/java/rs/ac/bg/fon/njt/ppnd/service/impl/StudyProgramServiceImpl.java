@@ -24,6 +24,12 @@ public class StudyProgramServiceImpl implements StudyProgramService{
 	@Autowired
 	StudyProgramConverter studyProgramConverter;
 
+	/**
+	 * Returns study program founded by id
+	 * @param id - id of the study program
+	 * @return StudyProgramDTO - dto of founded study program
+	 * @throws ResponseStatusException - if there is no study program with given id
+	 */
 	@Override
 	public StudyProgramDTO getBuyId(Long id) {
 		try {
@@ -38,6 +44,11 @@ public class StudyProgramServiceImpl implements StudyProgramService{
 		}
 	}
 
+	/**
+	 * Saves study program from given studyProgramDTO
+	 * @param studyProgram - StudyProgramDTO with info about study program
+	 * @return StudyProgramDTO of saved study program
+	 */
 	@Override
 	public StudyProgramDTO saveStudyProgram(StudyProgramDTO studyProgram) {
 		try {
@@ -50,6 +61,12 @@ public class StudyProgramServiceImpl implements StudyProgramService{
 		
 	}
 
+	/**
+	 * Deletes study program with given id
+	 * @param id - id of the study program
+	 * @return StudyProgramDTO - dto of deleted study program
+	 * @throws ResponseStatusException - if there is no study program with given id
+	 */
 	@Override
 	public StudyProgramDTO deleteStudyProgram(Long id) {
 		try {
@@ -65,6 +82,11 @@ public class StudyProgramServiceImpl implements StudyProgramService{
 		}
 	}
 
+	/**
+	 * Returns all study programs
+	 * @return List of StudyProgramDTOs
+	 * @throws ResponseStatusException - if there are no saved study programs
+	 */
 	@Override
 	public List<StudyProgramDTO> getAllStudyPrograms() {
 		try {
@@ -83,6 +105,12 @@ public class StudyProgramServiceImpl implements StudyProgramService{
 		}
 	}
 
+	/**
+	 * Updates study program from given studyProgramDTO
+	 * @param studyProgramDTO - StudyProgramDTO
+	 * @return StudyProgramDTO of updated study program
+	 * @throws ResponseStatusException if there is no study program with given id
+	 */
 	@Override
 	public StudyProgramDTO updateStudyProgram(StudyProgramDTO studyProgramDTO) {
 		try {

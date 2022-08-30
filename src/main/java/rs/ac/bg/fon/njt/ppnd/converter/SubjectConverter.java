@@ -10,12 +10,15 @@ import rs.ac.bg.fon.njt.ppnd.dto.DepartmentDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.ModuleSubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.SubjectDTO;
 import rs.ac.bg.fon.njt.ppnd.model.Department;
+import rs.ac.bg.fon.njt.ppnd.model.ModuleSubject;
 import rs.ac.bg.fon.njt.ppnd.model.Subject;
 import rs.ac.bg.fon.njt.ppnd.service.impl.DepartmentServiceImpl;
 
 @Component
 public class SubjectConverter implements Converter<SubjectDTO, Subject>{
 
+	@Autowired
+	ModuleSubjectConverter moduleSubjectConverter;
 
 	@Autowired
 	DepartmentConverter departmentConverter;
@@ -26,7 +29,17 @@ public class SubjectConverter implements Converter<SubjectDTO, Subject>{
 	@Override
 	public Subject toEntity(SubjectDTO d) {
 		Department department=this.departmentConverter.toEntity(this.departmentService.getDepartmentById(d.getDepartment().getId()));
-		return new Subject(d.getId(), d.getName(), d.getLecutresPerWeek(), d.getExercisesPerWeek(), d.getLabExercisesPerWeek(), department);
+		Subject s = new Subject(d.getId(), d.getName(), d.getLecutresPerWeek(), d.getExercisesPerWeek(), d.getLabExercisesPerWeek(), department);
+		if(d.getModuleSubjects()!=null){
+			List<ModuleSubject> moduleSubjects = new ArrayList<>();
+			for (ModuleSubjectDTO moduleSubjectDTO:d.getModuleSubjects()){
+				ModuleSubject moduleSubject = this.moduleSubjectConverter.toEntity(moduleSubjectDTO);
+				moduleSubjects.add(moduleSubject);
+			}
+			s.setModuleSubjects(moduleSubjects);
+		}
+		return s;
+
 	}
 
 	@Override

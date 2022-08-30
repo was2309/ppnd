@@ -39,6 +39,12 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
         this.lecturingRepository = lecturingRepository;
     }
 
+    /**
+     * Returns all teaching covering plans for specific yearId
+     * @param yearId - id of the year
+     * @return List of TeachingCoveragePlanDTO
+     * @throws ResponseStatusException if there is no saved teaching covering plans for specific yearId
+     */
     @Override
     @Transactional
     public List<TeachingCoveragePlanDTO> getAllByYear(Long yearId) {
@@ -63,6 +69,12 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
         }
     }
 
+    /**
+     * Returns all teaching covering plans for specific moduleSubjectId
+     * @param moduleSubjectId - id of the module
+     * @return List of TeachingCoveragePlanDTO
+     * @throws ResponseStatusException if there is no saved teaching covering plans for specific moduleSubjectId
+     */
     @Override
     @Transactional
     public List<TeachingCoveragePlanDTO> getAllByModuleSubject(Long moduleSubjectId) {
@@ -87,6 +99,12 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
         }
     }
 
+    /**
+     * Returns teaching coverage plan founded by id
+     * @param id - id of the teaching coverage plan
+     * @return TeachingCoveragePlanDTO of the founded teaching coverage plan
+     * @throws ResponseStatusException if there is no saved teaching coverage plan with given id
+     */
     @Override
     public TeachingCoveragePlanDTO findById(Long id) {
         try{
@@ -122,6 +140,12 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
         }
     }
 
+    /**
+     * Saves teaching coverage plan from given teachingCoveragePlanDTO
+     * @param teachingCoveragePlanDTO - TeachingCoveragePlanDTO with info about teaching coverage plan
+     * @return TeachingCoveragePlanDTO - saved teaching coverage plan
+     * @throws ResponseStatusException if there is no year or moduleSubject with given id
+     */
     @Override
     @Transactional
     public TeachingCoveragePlanDTO saveTeachingCoveragePlan(TeachingCoveragePlanDTO teachingCoveragePlanDTO) {
@@ -159,6 +183,12 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
         }
     }
 
+    /**
+     * Deletes teaching coverage plan with given id
+     * @param id - id of teaching coverage plan
+     * @return TeachingCoveragePlanDTO of deleted teaching coverage plan
+     * @throws ResponseStatusException if there is no saved teaching coverage plan with given id
+     */
     @Override
     public TeachingCoveragePlanDTO deleteTeachingCoveragePlan(Long id) {
         try{
