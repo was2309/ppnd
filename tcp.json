@@ -1,0 +1,65 @@
+{
+  "id": 74,
+  "year": {
+    "id": 2022,
+    "studyYear": "2022/2023",
+    "studyProgram": {
+      "id": 1,
+      "name": "Informacioni sistemi i tehnologije"
+    },
+    "coveragePlans": []
+  },
+  "moduleSubject": {
+    "id": 37,
+    "position": 5,
+    "semester": 2,
+    "subjectType": "OBAVEZNI",
+    "numOfESPB": 5,
+    "subject": {
+      "id": 34,
+      "name": "Programiranje 2",
+      "exercisesPerWeek": 2,
+      "labExercisesPerWeek": 1,
+      "lecutresPerWeek": 1,
+      "department": {
+        "id": 15,
+        "name": "Katedra za softversko inzenjerstvo",
+        "numberOfMembers": 2
+      },
+      "moduleSubjects": []
+    },
+    "module": {
+      "id": 5,
+      "name": "Softversko inzenjerstvo",
+      "moduleSubject": [],
+      "studyProgram": {
+        "id": 1,
+        "name": "Informacioni sistemi i tehnologije"
+      }
+    }
+  },
+  "lecturings": [
+    {
+      "id": 77,
+      "numberOfClasses": 6,
+      "lecturer": {
+        "id": 15,
+        "firstName": "Marijana",
+        "lastName": "Despotovic-Zrakic",
+        "academicTitle": "REDOVNI_PROF"
+      },
+      "teachingForm": "PREDAVANJA"
+    },
+    {
+      "id": 78,
+      "numberOfClasses": 13,
+      "lecturer": {
+        "id": 89,
+        "firstName": "Dusan",
+        "lastName": "Savic",
+        "academicTitle": "VANREDNI_PROF"
+      },
+      "teachingForm": "VEZBE"
+    }
+  ]
+}

@@ -10,4 +10,5 @@ public interface TeachingCoveragePlanService {
     TeachingCoveragePlanDTO findById(Long id);
     TeachingCoveragePlanDTO saveTeachingCoveragePlan(TeachingCoveragePlanDTO teachingCoveragePlanDTO);
     TeachingCoveragePlanDTO deleteTeachingCoveragePlan(Long id);
+    TeachingCoveragePlanDTO updateTeachingCoveragePlanDto(TeachingCoveragePlanDTO teachingCoveragePlanDTO);
 }

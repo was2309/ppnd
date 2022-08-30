@@ -24,7 +24,7 @@ public class TeachingCoveragePlan {
     @JoinColumn(name = "year_id")
     private Year year;
 
-    @OneToMany
+    @OneToMany(mappedBy = "teachingCoveragePlan", fetch = FetchType.EAGER)
     private List<Lecturing> lecturings;
 
 	public TeachingCoveragePlan(Long id, ModuleSubject moduleSubject, Year year, List<Lecturing> lecturings) {

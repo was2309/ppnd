@@ -7,17 +7,18 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "teaching_coverage_plan")
+@Table(name = "lecturing")
 public class Lecturing {
 
     @Id
     @GeneratedValue
+	@Column(name = "lecturing_id")
     private Long id;
 
     private int numberOfClasses;
 
     @ManyToOne
-    @JoinColumn(name = "lecturer_id")
+    @JoinColumn(name = "employee_id")
     private Lecturer lecturer;
 
     @ManyToOne

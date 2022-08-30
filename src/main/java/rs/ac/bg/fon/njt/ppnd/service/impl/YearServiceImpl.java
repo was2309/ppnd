@@ -2,15 +2,14 @@ package rs.ac.bg.fon.njt.ppnd.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import rs.ac.bg.fon.njt.ppnd.converter.YearConverter;
 import rs.ac.bg.fon.njt.ppnd.dto.StudyProgramDTO;
 import rs.ac.bg.fon.njt.ppnd.dto.YearDTO;
-import rs.ac.bg.fon.njt.ppnd.model.StudyProgram;
 import rs.ac.bg.fon.njt.ppnd.model.Year;
 import rs.ac.bg.fon.njt.ppnd.repository.YearRepository;
 import rs.ac.bg.fon.njt.ppnd.service.StudyProgramService;
@@ -18,23 +17,27 @@ import rs.ac.bg.fon.njt.ppnd.service.YearService;
 
 public class YearServiceImpl implements YearService{
 	
-	@Autowired
-	YearRepository yearRepository;
+	private final YearRepository yearRepository;
 	
-	@Autowired
-	StudyProgramService studyProgramService;
+	private final StudyProgramService studyProgramService;
 	
-	@Autowired
-	YearConverter yearConverter;
+	private final YearConverter yearConverter;
+
+
+	public YearServiceImpl(YearRepository yearRepository, StudyProgramService studyProgramService, YearConverter yearConverter) {
+		this.yearRepository = yearRepository;
+		this.studyProgramService = studyProgramService;
+		this.yearConverter = yearConverter;
+	}
 
 	@Override
 	public YearDTO getById(Long id) {
 		try {
-			Year year=this.yearRepository.findById(id).get();
-			if(year==null) {
+			Optional<Year> y=this.yearRepository.findById(id);
+			if(y.isEmpty()) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Year with given id does note exist!");
 			}
-			return this.yearConverter.toDto(year);
+			return this.yearConverter.toDto(y.get());
 		} catch (Exception e) {
 			throw e;
 		}
@@ -44,7 +47,7 @@ public class YearServiceImpl implements YearService{
 	public List<YearDTO> getAllYears() {
 		try {
 			List<Year>years=this.yearRepository.findAll();
-			if(years==null || years.size()==0) {
+			if(years.size()==0) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No saved years!");
 			}
 		 List<YearDTO> yearDtos=new ArrayList<>();
@@ -76,10 +79,11 @@ public class YearServiceImpl implements YearService{
 	@Override
 	public YearDTO deleteYear(Long id) {
 		try {
-			Year year=this.yearRepository.findById(id).get();
-			if(year==null) {
+			Optional<Year> y=this.yearRepository.findById(id);
+			if(y.isEmpty()) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Year with given id does note exist!");
 			}
+			Year year = y.get();
 			this.yearRepository.delete(year);
 			return this.yearConverter.toDto(year);
 		} catch (Exception e) {
@@ -91,8 +95,8 @@ public class YearServiceImpl implements YearService{
 	public YearDTO updateYear(YearDTO yearDto) {
 		try {
 			Year year=this.yearConverter.toEntity(yearDto);
-			Year foundYear=this.yearRepository.findById(year.getId()).get();
-			if(foundYear==null) {
+			Optional<Year> foundYearOptional=this.yearRepository.findById(year.getId());
+			if(foundYearOptional.isEmpty()) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Year with given id does note exist!");
 			}
 			Year savedYear=this.yearRepository.save(year);

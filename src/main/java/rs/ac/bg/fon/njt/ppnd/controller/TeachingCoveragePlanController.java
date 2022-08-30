@@ -38,9 +38,14 @@ public class TeachingCoveragePlanController {
         return this.teachingCoveragePlanService.getAllByYear(Long.valueOf(yearId));
     }
 
-    @GetMapping("get_by_year/{moduleSubjectId}")
+    @GetMapping("get_by_subject/{moduleSubjectId}")
     public List<TeachingCoveragePlanDTO> getAllByModuleSubject(@PathVariable("moduleSubjectId") String moduleSubjectId){
         return this.teachingCoveragePlanService.getAllByModuleSubject(Long.valueOf(moduleSubjectId));
+    }
+
+    @PutMapping("update")
+    public TeachingCoveragePlanDTO updateTCP(@RequestBody TeachingCoveragePlanDTO teachingCoveragePlanDTO){
+        return this.teachingCoveragePlanService.updateTeachingCoveragePlanDto(teachingCoveragePlanDTO);
     }
 
 
