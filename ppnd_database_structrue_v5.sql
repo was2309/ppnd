@@ -317,7 +317,7 @@ CREATE TABLE `hibernate_sequence` (
 /*Data for the table `hibernate_sequence` */
 
 insert  into `hibernate_sequence`(`next_val`) values 
-(21);
+(79);
 
 /*Table structure for table `lecturing` */
 
@@ -328,16 +328,22 @@ CREATE TABLE `lecturing` (
   `teaching_coverage_plan_id` bigint(20) unsigned NOT NULL,
   `teaching_form` varchar(25) DEFAULT NULL,
   `number_of_classes` int(10) unsigned DEFAULT NULL,
-  `lecturer_id` bigint(20) unsigned DEFAULT NULL,
+  `employee_id` bigint(20) unsigned DEFAULT NULL,
   PRIMARY KEY (`lecturing_id`),
   KEY `lecturing_id` (`lecturing_id`),
   KEY `teaching_coverage_plan_id` (`teaching_coverage_plan_id`),
-  KEY `lecturer_id` (`lecturer_id`),
+  KEY `lecturer_id` (`employee_id`),
   CONSTRAINT `lecturing_ibfk_4` FOREIGN KEY (`teaching_coverage_plan_id`) REFERENCES `teaching_coverage_plan` (`teaching_coverage_plan_id`),
-  CONSTRAINT `lecturing_ibfk_5` FOREIGN KEY (`lecturer_id`) REFERENCES `employee` (`employee_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `lecturing_ibfk_5` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `lecturing` */
+
+insert  into `lecturing`(`lecturing_id`,`teaching_coverage_plan_id`,`teaching_form`,`number_of_classes`,`employee_id`) values 
+(63,62,'PREDAVANJA',6,10),
+(64,62,'PREDAVANJA',6,89),
+(77,74,'PREDAVANJA',6,15),
+(78,74,'VEZBE',13,89);
 
 /*Table structure for table `module` */
 
@@ -386,9 +392,18 @@ CREATE TABLE `module_subject` (
   KEY `subject_id` (`subject_id`),
   CONSTRAINT `module_subject_ibfk_4` FOREIGN KEY (`module_id`) REFERENCES `module` (`module_id`),
   CONSTRAINT `module_subject_ibfk_5` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `module_subject` */
+
+insert  into `module_subject`(`id`,`module_id`,`subject_id`,`semester`,`position`,`subject_type`,`num_of_espb`) values 
+(29,1,28,2,5,'OBAVEZNI',4),
+(30,2,28,2,7,'ALTERNATIVNI',4),
+(31,5,28,2,5,'OBAVEZNI',5),
+(35,1,34,2,5,'OBAVEZNI',4),
+(36,2,34,2,7,'ALTERNATIVNI',4),
+(37,5,34,2,5,'OBAVEZNI',5),
+(38,4,20,8,2,'IZBORNI',4);
 
 /*Table structure for table `study_program` */
 
@@ -398,13 +413,14 @@ CREATE TABLE `study_program` (
   `study_program_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `study_program_name` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`study_program_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `study_program` */
 
 insert  into `study_program`(`study_program_id`,`study_program_name`) values 
 (1,'Informacioni sistemi i tehnologije'),
-(2,'Menadzment i organizacija');
+(2,'Menadzment i organizacija'),
+(21,'Informacioni sistemi i tehnologije');
 
 /*Table structure for table `subject` */
 
@@ -426,7 +442,9 @@ CREATE TABLE `subject` (
 
 insert  into `subject`(`subject_id`,`subject_name`,`department_id`,`excercises_per_week`,`lectures_per_week`,`lab_excercises_per_week`) values 
 (17,'Projektovanje softvera',15,1,2,1),
-(20,'Napredne java tehnologije',15,1,2,1);
+(20,'Napredne java tehnologije',15,1,2,1),
+(28,'Programiranje 1',15,2,1,1),
+(34,'Programiranje 2',15,2,1,1);
 
 /*Table structure for table `teaching_coverage_plan` */
 
@@ -436,18 +454,18 @@ CREATE TABLE `teaching_coverage_plan` (
   `teaching_coverage_plan_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `year_id` bigint(20) unsigned NOT NULL,
   `module_subject_id` bigint(20) unsigned NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `number_of_classes` int(11) NOT NULL,
-  `teaching_form` varchar(255) DEFAULT NULL,
-  `lecturer_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`teaching_coverage_plan_id`),
   KEY `year_id` (`year_id`),
   KEY `module_subject_id` (`module_subject_id`),
   CONSTRAINT `teaching_coverage_plan_ibfk_6` FOREIGN KEY (`year_id`) REFERENCES `year` (`year_id`),
   CONSTRAINT `teaching_coverage_plan_ibfk_7` FOREIGN KEY (`module_subject_id`) REFERENCES `module_subject` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `teaching_coverage_plan` */
+
+insert  into `teaching_coverage_plan`(`teaching_coverage_plan_id`,`year_id`,`module_subject_id`) values 
+(62,2022,38),
+(74,2022,37);
 
 /*Table structure for table `user_profile` */
 
@@ -480,6 +498,10 @@ CREATE TABLE `year` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `year` */
+
+insert  into `year`(`year_id`,`study_year`,`study_program_id`) values 
+(2022,'2022/2023',1),
+(20222,'2022/2023',2);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
