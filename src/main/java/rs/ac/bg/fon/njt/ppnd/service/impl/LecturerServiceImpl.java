@@ -13,19 +13,38 @@ import rs.ac.bg.fon.njt.ppnd.service.LecturerService;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service implementation which contains business logic for lecturer entity
+ *
+ * @author Vasilije
+ */
 @Service
 public class LecturerServiceImpl implements LecturerService {
-
+    /**
+     * Repository for lecturer entity
+     */
     private final LecturerRepository lecturerRepository;
-
+    /**
+     * Converter for lecturer entity
+     */
     private final LecturerConverter lecturerConverter;
 
+    /**
+     * Constructor with parameters
+     * @param lecturerRepository - Repository for lecturer entity
+     * @param lecturerConverter - Converter for lecturer entity
+     */
     @Autowired
     public LecturerServiceImpl(LecturerRepository lecturerRepository, LecturerConverter lecturerConverter) {
         this.lecturerRepository = lecturerRepository;
         this.lecturerConverter = lecturerConverter;
     }
 
+    /**
+     * Returns list of all lecturers on the faculty
+     * @return List of all lecturers on the faculty
+     * @throws ResponseStatusException - if there is no saved lecturers
+     */
     @Override
     public List<LecturerDTO> getAllLecturers() {
         try {
@@ -44,6 +63,12 @@ public class LecturerServiceImpl implements LecturerService {
         }
     }
 
+    /**
+     * Returns lecturers by department id - if recorded
+     * @param departmentId - id of the department
+     * @return List - List of LecturerDTO object which represents founded lecturers
+     * @throws ResponseStatusException - if there is no saved lecturers for department with given id
+     */
     @Override
     public List<LecturerDTO> getLecturersFromDepartment(Long departmentId){
         try {
