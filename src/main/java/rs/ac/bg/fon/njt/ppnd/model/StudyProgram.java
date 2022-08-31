@@ -72,7 +72,7 @@ public class StudyProgram {
 
 	/**
 	 * Sets name of study program.
-	 * @param name
+	 * @param name - name of study program
 	 * @throws IllegalArgumentException - if name is null
 	 */
 	public void setName(String name) {
