@@ -90,23 +90,39 @@ public class EmployeeTest {
         assertThrows(java.lang.IllegalArgumentException.class, ()->e.setDepartment(null));
     }
 
+    @Test
+    void testToString(){
+        e.setFirstName("Pera");
+        e.setLastName("Peric");
+        e.setTitle(EducationTitle.DR);
+
+        String s = e.toString();
+        assertTrue(s.contains("Pera"));
+        assertTrue(s.contains("Peric"));
+        assertTrue(s.contains("DR"));
+
+    }
+
     @ParameterizedTest
     @CsvSource({
-            "1, 1, Marko, Marko, Markovic, Markovic, true",
-            "1, 1, Marko, Marko, Markovic, Petrovic, false",
-            "1, 1, Marko, Petar, Markovic, Markovic, false",
-            "1, 2, Marko, Marko, Markovic, Markovic, false"
+            "1, 1, Marko, Marko, Markovic, Markovic, DR, DR, true",
+            "1, 1, Marko, Marko, Markovic, Petrovic, DR, DR, false",
+            "1, 1, Marko, Petar, Markovic, Markovic, DR, DR, false",
+            "1, 2, Marko, Marko, Markovic, Markovic, DR, DR, false",
+            "1, 1, Marko, Marko, Markovic, Markovic, DR, MSA, false"
     })
-    void testEquals(Long id1, Long id2, String fname1, String fname2, String lname1, String lname2, boolean eq){
+    void testEquals(Long id1, Long id2, String fname1, String fname2, String lname1, String lname2, EducationTitle et1, EducationTitle et2, boolean eq){
         e.setId(id1);
         e.setFirstName(fname1);
         e.setLastName(lname1);
+        e.setTitle(et1);
 
 
         Employee e2 = new Employee();
         e2.setId(id2);
         e2.setFirstName(fname2);
         e2.setLastName(lname2);
+        e2.setTitle(et2);
 
         assertEquals(eq, e.equals(e2));
     }
