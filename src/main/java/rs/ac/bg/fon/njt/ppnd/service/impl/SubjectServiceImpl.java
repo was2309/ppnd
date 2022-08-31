@@ -124,8 +124,12 @@ public class SubjectServiceImpl implements SubjectService {
                 moduleSubject.setNumOfESPB(ms.getNumOfESPB());
                 moduleSubject.setSemester(ms.getSemester());
 
-                this.moduleSubjectRepository.save(moduleSubject);
+                ModuleSubject savedModuleSubject = this.moduleSubjectRepository.save(moduleSubject);
+                ms.setId(savedModuleSubject.getId());
             });
+            subjectDTO.setId(saved.getId());
+            subjectDTO.getDepartment().setName(saved.getDepartment().getName());
+            subjectDTO.getDepartment().setNumberOfMembers(saved.getDepartment().getNumberOfMembers());
 
             return subjectDTO;
         } catch (Exception e) {
@@ -269,9 +273,12 @@ public class SubjectServiceImpl implements SubjectService {
                 moduleSubject.setNumOfESPB(ms.getNumOfESPB());
                 moduleSubject.setSemester(ms.getSemester());
 
-                this.moduleSubjectRepository.save(moduleSubject);
+                ModuleSubject savedModuleSubject = this.moduleSubjectRepository.save(moduleSubject);
+                ms.setId(savedModuleSubject.getId());
             });
-
+            subjectDTO.setId(saved.getId());
+            subjectDTO.getDepartment().setName(saved.getDepartment().getName());
+            subjectDTO.getDepartment().setNumberOfMembers(saved.getDepartment().getNumberOfMembers());
             return subjectDTO;
         } catch (Exception e) {
             throw e;

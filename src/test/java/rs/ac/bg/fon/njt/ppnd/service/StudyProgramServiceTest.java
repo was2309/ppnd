@@ -111,7 +111,7 @@ public abstract class StudyProgramServiceTest {
         Mockito.when(studyProgramRepository.findById(studyProgram.getId())).thenReturn(Optional.of(studyProgram));
         Mockito.when(studyProgramRepository.save(updatedStudyProgram)).thenReturn(updatedStudyProgram);
 
-        StudyProgramDTO updated = studyProgramService.saveStudyProgram(inDto);
+        StudyProgramDTO updated = studyProgramService.updateStudyProgram(inDto);
         updatedStudyProgram.setId(studyProgram.getId());
         assertEquals(updated, studyProgramConverter.toDto(updatedStudyProgram));
     }
