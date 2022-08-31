@@ -92,6 +92,7 @@ public class Year {
 	 * @param studyYear - name of the year
 	 */
 	public void setStudyYear(String studyYear) {
+		if(studyYear == null || studyYear.length()>9) throw new IllegalArgumentException();
 		this.studyYear = studyYear;
 	}
 
