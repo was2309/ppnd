@@ -25,6 +25,12 @@ public class DepartmentTest {
 
 
     @Test
+    void testSetId(){
+        d.setId(3L);
+        assertEquals(3L, d.getId());
+    }
+
+    @Test
     void testSetName(){
         d.setName("Katedra za poslovanje");
         assertEquals("Katedra za poslovanje", d.getName());
@@ -58,6 +64,14 @@ public class DepartmentTest {
     @Test
     void testSetDepartmentTypeNull(){
         assertThrows(java.lang.IllegalArgumentException.class, ()->d.setType(null));
+    }
+
+
+    @Test
+    void testToStringMethod(){
+        d.setName("Katedra za poslovanje");
+        String s = d.toString();
+        assertTrue(s.contains("Katedra za poslovanje"));
     }
 
     @ParameterizedTest
