@@ -27,4 +27,9 @@ public class LecturerController {
     List<LecturerDTO> getLecturersFromDepartment(@PathVariable("departmentId") String departmentId){
         return this.lecturerServiceImpl.getLecturersFromDepartment(Long.valueOf(departmentId));
     }
+
+    @GetMapping("get/{lecturerId}")
+    LecturerDTO getLecturerById(@PathVariable("lecturerId") Long lecturerId){
+        return this.lecturerServiceImpl.getLecturerById(lecturerId);
+    }
 }

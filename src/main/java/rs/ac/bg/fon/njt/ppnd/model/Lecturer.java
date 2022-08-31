@@ -51,6 +51,14 @@ public class Lecturer extends Employee {
 		this.academicTitle = academicTitle;
     }
 
+    public Lecturer(Long id, String firstName, String lastName, AcademicTitle academicTitle, Department department){
+		this.setId(id);
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		this.academicTitle = academicTitle;
+		this.setDepartment(department);
+	}
+
 	/**
 	 * Returns academic title of the lecturer.
 	 * @return academicTitle

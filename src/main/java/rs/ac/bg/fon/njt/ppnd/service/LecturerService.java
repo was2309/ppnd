@@ -7,5 +7,6 @@ import java.util.List;
 public interface LecturerService {
     List<LecturerDTO> getAllLecturers();
     List<LecturerDTO> getLecturersFromDepartment(Long departmentId);
+    LecturerDTO getLecturerById(Long lecturerId);
 //    List<LecturerDTO> getLecturersByLastName(LecturerDTO lecturerDTO); // optional
 }

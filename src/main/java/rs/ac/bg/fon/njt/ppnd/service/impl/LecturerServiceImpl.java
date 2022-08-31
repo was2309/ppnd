@@ -12,6 +12,7 @@ import rs.ac.bg.fon.njt.ppnd.service.LecturerService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service implementation which contains business logic for lecturer entity
@@ -82,6 +83,20 @@ public class LecturerServiceImpl implements LecturerService {
                 dto.add(l);
             }));
             return dto;
+        } catch (Exception e){
+            throw e;
+        }
+    }
+
+    @Override
+    public LecturerDTO getLecturerById(Long lecturerId) {
+        try {
+            Optional<Lecturer> lecturer = this.lecturerRepository.findById(lecturerId);
+            if (lecturer.isEmpty()) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, " No saved lecturers for given id! ");
+            }
+
+            return this.lecturerConverter.toDto(lecturer.get());
         } catch (Exception e){
             throw e;
         }
