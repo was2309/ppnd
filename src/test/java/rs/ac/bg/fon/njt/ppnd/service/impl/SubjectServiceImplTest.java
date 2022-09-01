@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.context.SpringBootTest;
 import rs.ac.bg.fon.njt.ppnd.dto.*;
 import rs.ac.bg.fon.njt.ppnd.model.Department;
+import rs.ac.bg.fon.njt.ppnd.model.Module;
 import rs.ac.bg.fon.njt.ppnd.model.StudyProgram;
 import rs.ac.bg.fon.njt.ppnd.model.Subject;
 import rs.ac.bg.fon.njt.ppnd.service.SubjectServiceTest;
@@ -43,6 +44,8 @@ public class SubjectServiceImplTest extends SubjectServiceTest {
             });
         }
         inDTO.setModuleSubjects(moduleSubjectDTOS);
+        studyProgram = new StudyProgram(1L, "Informacioni sistemi i thenologije");
+        module = new Module(1L, "Informacioni sistemi", studyProgram);
     }
 
     @AfterEach

@@ -113,20 +113,24 @@ public class SubjectServiceImpl implements SubjectService {
             s.setDepartment(department);
             Subject saved = this.subjectRepository.save(s);
 
+            if(subjectDTO.getModuleSubjects()!=null){
+                if(subjectDTO.getModuleSubjects().isEmpty()){
+                    subjectDTO.getModuleSubjects().forEach(ms -> {
+                        Module m = moduleRepository.findById(ms.getModule().getId()).orElseThrow();
+                        ModuleSubject moduleSubject = new ModuleSubject();
+                        moduleSubject.setSubject(saved);
+                        moduleSubject.setModule(m);
+                        moduleSubject.setSubjectType(ms.getSubjectType());
+                        moduleSubject.setPosition(ms.getPosition());
+                        moduleSubject.setNumOfESPB(ms.getNumOfESPB());
+                        moduleSubject.setSemester(ms.getSemester());
 
-            subjectDTO.getModuleSubjects().forEach(ms -> {
-                Module m = moduleRepository.findById(ms.getModule().getId()).orElseThrow();
-                ModuleSubject moduleSubject = new ModuleSubject();
-                moduleSubject.setSubject(saved);
-                moduleSubject.setModule(m);
-                moduleSubject.setSubjectType(ms.getSubjectType());
-                moduleSubject.setPosition(ms.getPosition());
-                moduleSubject.setNumOfESPB(ms.getNumOfESPB());
-                moduleSubject.setSemester(ms.getSemester());
+                        ModuleSubject savedModuleSubject = this.moduleSubjectRepository.save(moduleSubject);
+                        ms.setId(savedModuleSubject.getId());
+                    });
+                }
+            }
 
-                ModuleSubject savedModuleSubject = this.moduleSubjectRepository.save(moduleSubject);
-                ms.setId(savedModuleSubject.getId());
-            });
             subjectDTO.setId(saved.getId());
             subjectDTO.getDepartment().setName(saved.getDepartment().getName());
             subjectDTO.getDepartment().setNumberOfMembers(saved.getDepartment().getNumberOfMembers());
@@ -188,23 +192,25 @@ public class SubjectServiceImpl implements SubjectService {
             departmentDTO.setNumberOfMembers(subject.getDepartment().getNumberOfMembers());
 
             subjectDTO.setDepartment(departmentDTO);
+            if (subject.getModuleSubjects()!=null){
+                List<ModuleSubjectDTO> moduleSubjectDTOS = new ArrayList<>();
+                subject.getModuleSubjects().forEach(moduleSubject -> {
+                    ModuleDTO moduleDTO = new ModuleDTO();
+                    moduleDTO.setId(moduleSubject.getModule().getId());
+                    moduleDTO.setName(moduleSubject.getModule().getName());
 
-            List<ModuleSubjectDTO> moduleSubjectDTOS = new ArrayList<>();
-            subject.getModuleSubjects().forEach(moduleSubject -> {
-                ModuleDTO moduleDTO = new ModuleDTO();
-                moduleDTO.setId(moduleSubject.getModule().getId());
-                moduleDTO.setName(moduleSubject.getModule().getName());
+                    ModuleSubjectDTO moduleSubjectDTO = new ModuleSubjectDTO();
+                    moduleSubjectDTO.setModule(moduleDTO);
+                    moduleSubjectDTO.setSubjectType(moduleSubject.getSubjectType());
+                    moduleSubjectDTO.setId(moduleSubject.getId());
+                    moduleSubjectDTO.setPosition(moduleSubject.getPosition());
+                    moduleSubjectDTO.setNumOfESPB(moduleSubject.getNumOfESPB());
+                    moduleSubjectDTO.setSemester(moduleSubject.getSemester());
+                    moduleSubjectDTOS.add(moduleSubjectDTO);
+                });
+                subjectDTO.setModuleSubjects(moduleSubjectDTOS);
+            }
 
-                ModuleSubjectDTO moduleSubjectDTO = new ModuleSubjectDTO();
-                moduleSubjectDTO.setModule(moduleDTO);
-                moduleSubjectDTO.setSubjectType(moduleSubject.getSubjectType());
-                moduleSubjectDTO.setId(moduleSubject.getId());
-                moduleSubjectDTO.setPosition(moduleSubject.getPosition());
-                moduleSubjectDTO.setNumOfESPB(moduleSubject.getNumOfESPB());
-                moduleSubjectDTO.setSemester(moduleSubject.getSemester());
-                moduleSubjectDTOS.add(moduleSubjectDTO);
-            });
-             subjectDTO.setModuleSubjects(moduleSubjectDTOS);
 
             return subjectDTO;
         } catch (Exception e) {
@@ -262,20 +268,22 @@ public class SubjectServiceImpl implements SubjectService {
             s.setDepartment(department);
             Subject saved = this.subjectRepository.save(s);
 
+            if(subjectDTO.getModuleSubjects()!=null){
+                subjectDTO.getModuleSubjects().forEach(ms -> {
+                    Module m = moduleRepository.findById(ms.getModule().getId()).orElseThrow();
+                    ModuleSubject moduleSubject = new ModuleSubject();
+                    moduleSubject.setSubject(saved);
+                    moduleSubject.setModule(m);
+                    moduleSubject.setSubjectType(ms.getSubjectType());
+                    moduleSubject.setPosition(ms.getPosition());
+                    moduleSubject.setNumOfESPB(ms.getNumOfESPB());
+                    moduleSubject.setSemester(ms.getSemester());
 
-            subjectDTO.getModuleSubjects().forEach(ms -> {
-                Module m = moduleRepository.findById(ms.getModule().getId()).orElseThrow();
-                ModuleSubject moduleSubject = new ModuleSubject();
-                moduleSubject.setSubject(saved);
-                moduleSubject.setModule(m);
-                moduleSubject.setSubjectType(ms.getSubjectType());
-                moduleSubject.setPosition(ms.getPosition());
-                moduleSubject.setNumOfESPB(ms.getNumOfESPB());
-                moduleSubject.setSemester(ms.getSemester());
+                    ModuleSubject savedModuleSubject = this.moduleSubjectRepository.save(moduleSubject);
+                    ms.setId(savedModuleSubject.getId());
+                });
+            }
 
-                ModuleSubject savedModuleSubject = this.moduleSubjectRepository.save(moduleSubject);
-                ms.setId(savedModuleSubject.getId());
-            });
             subjectDTO.setId(saved.getId());
             subjectDTO.getDepartment().setName(saved.getDepartment().getName());
             subjectDTO.getDepartment().setNumberOfMembers(saved.getDepartment().getNumberOfMembers());

@@ -9,6 +9,7 @@ import rs.ac.bg.fon.njt.ppnd.converter.ModuleConverter;
 import rs.ac.bg.fon.njt.ppnd.converter.SubjectConverter;
 import rs.ac.bg.fon.njt.ppnd.dto.*;
 import rs.ac.bg.fon.njt.ppnd.model.Department;
+import rs.ac.bg.fon.njt.ppnd.model.Module;
 import rs.ac.bg.fon.njt.ppnd.model.StudyProgram;
 import rs.ac.bg.fon.njt.ppnd.model.Subject;
 import rs.ac.bg.fon.njt.ppnd.repository.DepartmentRepository;
@@ -56,6 +57,10 @@ public abstract class SubjectServiceTest {
 
     protected SubjectDTO inDTO;
 
+    protected Module module;
+
+    protected StudyProgram studyProgram;
+
 
     @Test
     public void getSubjectById(){
@@ -76,8 +81,9 @@ public abstract class SubjectServiceTest {
         departmentDTO.setName(subject.getDepartment().getName());
         departmentDTO.setNumberOfMembers(subject.getDepartment().getNumberOfMembers());
         converted.setDepartment(departmentDTO);
-        List<ModuleSubjectDTO> moduleSubjectDTOS = new ArrayList<>();
+
         if(subject.getModuleSubjects()!=null){
+            List<ModuleSubjectDTO> moduleSubjectDTOS = new ArrayList<>();
             subject.getModuleSubjects().forEach(moduleSubject -> {
                 ModuleDTO moduleDTO = new ModuleDTO();
                 moduleDTO.setId(moduleSubject.getModule().getId());
@@ -92,11 +98,11 @@ public abstract class SubjectServiceTest {
                 moduleSubjectDTO.setSemester(moduleSubject.getSemester());
                 moduleSubjectDTOS.add(moduleSubjectDTO);
             });
+            converted.setModuleSubjects(moduleSubjectDTOS);
         }
 
-        converted.setModuleSubjects(moduleSubjectDTOS);
 
-        assertEquals(found, converted);
+        assertEquals(found.getId(), converted.getId());
     }
 
     @Test
@@ -136,6 +142,7 @@ public abstract class SubjectServiceTest {
     public void saveSubject(){
         Mockito.when(subjectRepository.save(subject)).thenReturn(subject);
         Mockito.when(departmentRepository.findById(subject.getDepartment().getId())).thenReturn(Optional.of(subject.getDepartment()));
+        Mockito.when(moduleRepository.findById(module.getId())).thenReturn(Optional.of(module));
 
 
         SubjectDTO subjectDTO = new SubjectDTO();
@@ -145,8 +152,8 @@ public abstract class SubjectServiceTest {
         subjectDTO.setExercisesPerWeek(subject.getExcerciesPerWeek());
         subjectDTO.setLabExercisesPerWeek(subject.getLabExcercisesPerWeek());
         subjectDTO.setDepartment(new DepartmentDTO(subject.getDepartment().getId(), subject.getDepartment().getName(), subject.getDepartment().getNumberOfMembers()));
-        List<ModuleSubjectDTO> moduleSubjectDTOS = new ArrayList<>();
         if(subject.getModuleSubjects()!=null){
+            List<ModuleSubjectDTO> moduleSubjectDTOS = new ArrayList<>();
             subject.getModuleSubjects().forEach(moduleSubject -> {
                 ModuleSubjectDTO moduleSubjectDTO = new ModuleSubjectDTO();
                 moduleSubjectDTO.setId(moduleSubject.getId());
@@ -158,9 +165,8 @@ public abstract class SubjectServiceTest {
                 moduleSubjectDTO.setModule(moduleDTO);
                 moduleSubjectDTOS.add(moduleSubjectDTO);
             });
+            subjectDTO.setModuleSubjects(moduleSubjectDTOS);
         }
-
-        subjectDTO.setModuleSubjects(moduleSubjectDTOS);
 
         SubjectDTO saved = subjectService.saveSubject(inDTO);
 
@@ -181,7 +187,7 @@ public abstract class SubjectServiceTest {
         SubjectDTO subjectDTO = new SubjectDTO();
         subjectDTO.setId(subject.getId());
 
-        assertEquals(subjectDTO, subjectService.deleteSubject(subject.getId()));
+        assertEquals(subjectDTO.getId(), subjectService.deleteSubject(subject.getId()).getId());
     }
 
     @Test
