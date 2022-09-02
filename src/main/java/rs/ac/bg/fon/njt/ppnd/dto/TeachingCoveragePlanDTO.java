@@ -3,6 +3,7 @@ package rs.ac.bg.fon.njt.ppnd.dto;
 import rs.ac.bg.fon.njt.ppnd.model.Lecturing;
 
 import java.util.List;
+import java.util.Objects;
 
 public class TeachingCoveragePlanDTO {
 
@@ -53,5 +54,18 @@ public class TeachingCoveragePlanDTO {
 
 	public void setLecturings(List<LecturingDTO> lecturings) {
 		this.lecturings = lecturings;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		TeachingCoveragePlanDTO that = (TeachingCoveragePlanDTO) o;
+		return Objects.equals(id, that.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 }

@@ -1,6 +1,7 @@
 package rs.ac.bg.fon.njt.ppnd.dto;
 
 import java.util.List;
+import java.util.Objects;
 
 public class SubjectDTO {
 
@@ -85,5 +86,28 @@ public class SubjectDTO {
         this.moduleSubjects = moduleSubjects;
     }
 
+    @Override
+    public String toString() {
+        return "SubjectDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", exercisesPerWeek=" + exercisesPerWeek +
+                ", labExercisesPerWeek=" + labExercisesPerWeek +
+                ", lecutresPerWeek=" + lecutresPerWeek +
+                ", department=" + department +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SubjectDTO that = (SubjectDTO) o;
+        return exercisesPerWeek == that.exercisesPerWeek && labExercisesPerWeek == that.labExercisesPerWeek && lecutresPerWeek == that.lecutresPerWeek && Objects.equals(id, that.id) && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, exercisesPerWeek, labExercisesPerWeek, lecutresPerWeek);
+    }
 }

@@ -105,7 +105,8 @@ public abstract class StudyProgramServiceTest {
     @Test
     public void updateStudyProgram(){
         studyProgram.setId(1L);
-        StudyProgram updatedStudyProgram = new StudyProgram(studyProgram.getId(), "StudyProgram2");
+        StudyProgram updatedStudyProgram = new StudyProgram(studyProgram.getId(), "Menadzment");
+        Mockito.when(studyProgramConverter.toDto(updatedStudyProgram)).thenReturn(inDto);
         inDto = studyProgramConverter.toDto(updatedStudyProgram);
 
         Mockito.when(studyProgramRepository.findById(studyProgram.getId())).thenReturn(Optional.of(studyProgram));

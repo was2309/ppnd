@@ -12,7 +12,7 @@ public class StudyProgramServiceImplTest  extends StudyProgramServiceTest {
     @BeforeEach
     public void setUp(){
         studyProgram = new StudyProgram(1L, "Informacioni sistemi i tehnologije");
-        inDto = new StudyProgramDTO(5L, "Menadzment");
+        inDto = new StudyProgramDTO(1L, "Menadzment");
     }
 
     @AfterEach

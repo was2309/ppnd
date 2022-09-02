@@ -161,7 +161,6 @@ public class TeachingCoveragePlan {
 				"id=" + id +
 				", moduleSubject=" + moduleSubject +
 				", year=" + year +
-				", lecturings=" + lecturings +
 				'}';
 	}
 }

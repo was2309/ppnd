@@ -5,8 +5,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.web.server.ResponseStatusException;
-import rs.ac.bg.fon.njt.ppnd.converter.TeachingCoveragePlanConverter;
-import rs.ac.bg.fon.njt.ppnd.dto.TeachingCoveragePlanDTO;
+import rs.ac.bg.fon.njt.ppnd.converter.*;
+import rs.ac.bg.fon.njt.ppnd.dto.*;
 import rs.ac.bg.fon.njt.ppnd.model.*;
 import rs.ac.bg.fon.njt.ppnd.model.Module;
 import rs.ac.bg.fon.njt.ppnd.repository.*;
@@ -60,9 +60,29 @@ public abstract class TeachingCoveragePlanServiceTest {
 
     protected Subject subject;
 
+    protected StudyProgram studyProgram;
+
     protected Module module;
 
     protected Lecturer lecturer;
+
+    protected TeachingCoveragePlanDTO inDTO;
+
+    protected YearDTO yearDTO;
+
+    protected ModuleSubjectDTO moduleSubjectDTO;
+
+    protected LecturingDTO lecturingDTO;
+
+    protected List<LecturingDTO> lecturingDTOS;
+
+    protected ModuleDTO moduleDTO;
+
+    protected SubjectDTO subjectDTO;
+
+    protected StudyProgramDTO studyProgramDTO;
+
+    protected DepartmentDTO departmentDTO;
 
 
     @Test
@@ -151,10 +171,12 @@ public abstract class TeachingCoveragePlanServiceTest {
         teachingCoveragePlan.setId(75L);
         Mockito.when(teachingCoveragePlanRepository.findById(teachingCoveragePlan.getId())).thenReturn(Optional.of(teachingCoveragePlan));
         Mockito.doNothing().when(teachingCoveragePlanRepository).delete(teachingCoveragePlan);
+        Mockito.doNothing().when(lecturingRepository).deleteAll(teachingCoveragePlan.getLecturings());
         TeachingCoveragePlanDTO tcpDTO = new TeachingCoveragePlanDTO();
         tcpDTO.setId(teachingCoveragePlan.getId());
+        Mockito.when(teachingCoveragePlanConverter.toDto(teachingCoveragePlan)).thenReturn(tcpDTO);
         TeachingCoveragePlanDTO deleted = teachingCoveragePlanService.deleteTeachingCoveragePlan(teachingCoveragePlan.getId());
-        assertEquals(tcpDTO.getId(), deleted.getId());
+        assertEquals(tcpDTO, deleted);
     }
 
     @Test
@@ -164,6 +186,46 @@ public abstract class TeachingCoveragePlanServiceTest {
     }
 
 
+    @Test
+    public void saveTeachingCoveragePlanYearNotFound(){
+        Mockito.when(yearRepository.findById(teachingCoveragePlan.getYear().getId())).thenReturn(Optional.empty());
+        assertThrows(ResponseStatusException.class, ()->teachingCoveragePlanService.saveTeachingCoveragePlan(inDTO));
+    }
+
+    @Test
+    public void saveTeachingCoveragePlanModuleSubjectNotFound(){
+        Mockito.when(yearRepository.findById(teachingCoveragePlan.getYear().getId())).thenReturn(Optional.of(year));
+        Mockito.when(moduleSubjectRepository.findById(teachingCoveragePlan.getModuleSubject().getId())).thenReturn(Optional.empty());
+        assertThrows(ResponseStatusException.class, ()->teachingCoveragePlanService.saveTeachingCoveragePlan(inDTO));
+    }
+
+
+    @Test
+    public void updateTeachingCoveragePlanTCPNotFound(){
+        Mockito.when(teachingCoveragePlanRepository.findById(teachingCoveragePlan.getId())).thenReturn(Optional.empty());
+        assertThrows(ResponseStatusException.class, ()->teachingCoveragePlanService.updateTeachingCoveragePlanDto(inDTO));
+    }
+
+    @Test
+    public void updateTeachingCoveragePlanModuleSubjectNotFound(){
+        Mockito.when(teachingCoveragePlanRepository.findById(teachingCoveragePlan.getId())).thenReturn(Optional.of(teachingCoveragePlan));
+        Mockito.when(yearRepository.findById(teachingCoveragePlan.getYear().getId())).thenReturn(Optional.of(year));
+        Mockito.when(moduleSubjectRepository.findById(teachingCoveragePlan.getModuleSubject().getId())).thenReturn(Optional.empty());
+        assertThrows(ResponseStatusException.class, ()->teachingCoveragePlanService.saveTeachingCoveragePlan(inDTO));
+    }
+
+    @Test
+    public void updateTeachingCoveragePlanYearNotFound(){
+        Mockito.when(teachingCoveragePlanRepository.findById(teachingCoveragePlan.getId())).thenReturn(Optional.of(teachingCoveragePlan));
+        Mockito.when(yearRepository.findById(teachingCoveragePlan.getYear().getId())).thenReturn(Optional.empty());
+        assertThrows(ResponseStatusException.class, ()->teachingCoveragePlanService.saveTeachingCoveragePlan(inDTO));
+    }
+
+    @Test
+    public void findByIdTCPNotFound(){
+        Mockito.when(teachingCoveragePlanRepository.findById(teachingCoveragePlan.getId())).thenReturn(Optional.empty());
+        assertThrows(ResponseStatusException.class, ()->teachingCoveragePlanService.findById(teachingCoveragePlan.getId()));
+    }
 
 
 }

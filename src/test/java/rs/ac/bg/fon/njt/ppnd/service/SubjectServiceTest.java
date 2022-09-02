@@ -8,10 +8,8 @@ import org.springframework.web.server.ResponseStatusException;
 import rs.ac.bg.fon.njt.ppnd.converter.ModuleConverter;
 import rs.ac.bg.fon.njt.ppnd.converter.SubjectConverter;
 import rs.ac.bg.fon.njt.ppnd.dto.*;
-import rs.ac.bg.fon.njt.ppnd.model.Department;
+import rs.ac.bg.fon.njt.ppnd.model.*;
 import rs.ac.bg.fon.njt.ppnd.model.Module;
-import rs.ac.bg.fon.njt.ppnd.model.StudyProgram;
-import rs.ac.bg.fon.njt.ppnd.model.Subject;
 import rs.ac.bg.fon.njt.ppnd.repository.DepartmentRepository;
 import rs.ac.bg.fon.njt.ppnd.repository.ModuleRepository;
 import rs.ac.bg.fon.njt.ppnd.repository.ModuleSubjectRepository;
@@ -60,6 +58,8 @@ public abstract class SubjectServiceTest {
     protected Module module;
 
     protected StudyProgram studyProgram;
+
+    protected ModuleSubject moduleSubject;
 
 
     @Test
@@ -140,9 +140,11 @@ public abstract class SubjectServiceTest {
 
     @Test
     public void saveSubject(){
+        subject.setId(null);
         Mockito.when(subjectRepository.save(subject)).thenReturn(subject);
         Mockito.when(departmentRepository.findById(subject.getDepartment().getId())).thenReturn(Optional.of(subject.getDepartment()));
         Mockito.when(moduleRepository.findById(module.getId())).thenReturn(Optional.of(module));
+        Mockito.when(moduleSubjectRepository.save((moduleSubject))).thenReturn(moduleSubject);
 
 
         SubjectDTO subjectDTO = new SubjectDTO();

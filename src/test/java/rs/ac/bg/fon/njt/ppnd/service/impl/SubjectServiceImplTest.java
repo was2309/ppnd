@@ -23,7 +23,6 @@ public class SubjectServiceImplTest extends SubjectServiceTest {
         subject = new Subject(1L, "Matematika 2", 2, 0, 2, department);
 
         inDTO = new SubjectDTO();
-        inDTO.setId(subject.getId());
         inDTO.setName(subject.getName());
         inDTO.setLecutresPerWeek(subject.getLecutresPerWeek());
         inDTO.setExercisesPerWeek(subject.getExcerciesPerWeek());

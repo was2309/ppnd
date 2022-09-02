@@ -202,16 +202,20 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
             tcp.setYear(year);
             tcp.setModuleSubject(moduleSubject);
             TeachingCoveragePlan savedTCP = this.teachingCoveragePlanRepository.save(tcp);
+            if(teachingCoveragePlanDTO.getLecturings()!=null){
+                if(!teachingCoveragePlanDTO.getLecturings().isEmpty()){
+                    teachingCoveragePlanDTO.getLecturings().forEach(lecturingDTO -> {
+                        Lecturer lecturer = lecturerRepository.findById(lecturingDTO.getLecturer().getId()).orElseThrow();
+                        Lecturing lecturing = new Lecturing();
+                        lecturing.setTeachingCoveragePlan(savedTCP);
+                        lecturing.setLecturer(lecturer);
+                        lecturing.setTeachingForm(lecturingDTO.getTeachingForm());
+                        lecturing.setNumberOfClasses(lecturingDTO.getNumberOfClasses());
+                        this.lecturingRepository.save(lecturing);
+                    });
+                }
+            }
 
-            teachingCoveragePlanDTO.getLecturings().forEach(lecturingDTO -> {
-                Lecturer lecturer = lecturerRepository.findById(lecturingDTO.getLecturer().getId()).orElseThrow();
-                Lecturing lecturing = new Lecturing();
-                lecturing.setTeachingCoveragePlan(savedTCP);
-                lecturing.setLecturer(lecturer);
-                lecturing.setTeachingForm(lecturingDTO.getTeachingForm());
-                lecturing.setNumberOfClasses(lecturingDTO.getNumberOfClasses());
-                this.lecturingRepository.save(lecturing);
-            });
             teachingCoveragePlanDTO.setId(savedTCP.getId());
             return teachingCoveragePlanDTO;
         }catch (Exception e){

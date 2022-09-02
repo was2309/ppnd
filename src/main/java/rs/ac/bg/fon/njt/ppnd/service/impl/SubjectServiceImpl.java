@@ -137,7 +137,6 @@ public class SubjectServiceImpl implements SubjectService {
 
             return subjectDTO;
         } catch (Exception e) {
-            e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Problem with saving subject!");
         }
     }
