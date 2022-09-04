@@ -7,6 +7,7 @@ import rs.ac.bg.fon.njt.ppnd.service.impl.ModuleServiceImpl;
 
 import java.util.List;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/v1/module")
 public class ModuleController {

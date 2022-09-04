@@ -9,6 +9,7 @@ import rs.ac.bg.fon.njt.ppnd.service.impl.StudyProgramServiceImpl;
 
 import java.util.List;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/v1/all/study-program")
 public class StudyProgramController {

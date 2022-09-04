@@ -1,15 +1,13 @@
 package rs.ac.bg.fon.njt.ppnd.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rs.ac.bg.fon.njt.ppnd.dto.DepartmentDTO;
 import rs.ac.bg.fon.njt.ppnd.service.impl.DepartmentServiceImpl;
 
 import java.util.List;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/v1/department")
 public class DepartmentController {

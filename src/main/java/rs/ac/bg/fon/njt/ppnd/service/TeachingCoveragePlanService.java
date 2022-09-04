@@ -11,4 +11,5 @@ public interface TeachingCoveragePlanService {
     TeachingCoveragePlanDTO saveTeachingCoveragePlan(TeachingCoveragePlanDTO teachingCoveragePlanDTO);
     TeachingCoveragePlanDTO deleteTeachingCoveragePlan(Long id);
     TeachingCoveragePlanDTO updateTeachingCoveragePlanDto(TeachingCoveragePlanDTO teachingCoveragePlanDTO);
+    List<TeachingCoveragePlanDTO> findAllTCPs();
 }

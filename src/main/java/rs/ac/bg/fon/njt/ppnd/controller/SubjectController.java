@@ -7,6 +7,7 @@ import rs.ac.bg.fon.njt.ppnd.service.impl.SubjectServiceImpl;
 
 import java.util.List;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/v1/subject")
 public class SubjectController {

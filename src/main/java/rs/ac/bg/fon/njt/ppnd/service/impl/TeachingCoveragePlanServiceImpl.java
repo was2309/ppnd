@@ -294,4 +294,25 @@ public class TeachingCoveragePlanServiceImpl implements TeachingCoveragePlanServ
         }
     }
 
+    @Override
+    public List<TeachingCoveragePlanDTO> findAllTCPs() {
+        try{
+            List<TeachingCoveragePlan> tcps = this.teachingCoveragePlanRepository.findAll();
+            if(tcps.size() == 0){
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There are no saved teaching coverage plans! ");
+            }
+            List<TeachingCoveragePlanDTO> tcpDTOs = new ArrayList<>();
+            tcps.forEach(teachingCoveragePlan -> {
+                TeachingCoveragePlanDTO tcpDTO = this.teachingCoveragePlanConverter.toDto(teachingCoveragePlan);
+                tcpDTOs.add(tcpDTO);
+            });
+
+            return tcpDTOs;
+        }catch (Exception e){
+            throw e;
+        }
+
+
+    }
+
 }

@@ -7,6 +7,7 @@ import rs.ac.bg.fon.njt.ppnd.service.impl.TeachingCoveragePlanServiceImpl;
 
 import java.util.List;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/v1/tcp")
 public class TeachingCoveragePlanController {
@@ -17,6 +18,12 @@ public class TeachingCoveragePlanController {
     public TeachingCoveragePlanController(TeachingCoveragePlanServiceImpl teachingCoveragePlanService) {
         this.teachingCoveragePlanService = teachingCoveragePlanService;
     }
+
+    @GetMapping("get/all")
+    public List<TeachingCoveragePlanDTO> findAllTCPs(){
+        return this.teachingCoveragePlanService.findAllTCPs();
+    }
+
 
     @GetMapping("get/{tcpId}")
     public TeachingCoveragePlanDTO findById(@PathVariable("tcpId") String tcpId){
